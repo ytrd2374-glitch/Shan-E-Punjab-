@@ -3,67 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shan-E-Punjab | VIP Bokaro</title>
+    <title>Shan-E-Punjab | VIP Menu</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --gold: #D4AF37;
-            --dark: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--dark); color: #fff; margin: 0; }
+        :root { --gold: #D4AF37; --dark: #0d0d0d; --card: #1a1a1a; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 80px; }
         
-        /* Premium Header */
         header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000');
-            background-size: cover; text-align: center; padding: 80px 20px;
-            border-bottom: 2px solid var(--gold);
+            padding: 60px 20px; text-align: center; border-bottom: 2px solid var(--gold);
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); margin: 0; }
-        .sub-tag { font-size: 1.2rem; letter-spacing: 3px; color: #ccc; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin: 0; }
 
-        /* Compact Map Section */
+        /* Compact Map Box */
         .map-box {
-            max-width: 600px; margin: -40px auto 30px; background: #1a1a1a;
-            padding: 15px; border-radius: 15px; border: 1px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 450px; margin: -40px auto 30px; background: var(--card);
+            padding: 10px; border-radius: 20px; border: 1px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); text-align: center;
         }
-        .small-map {
-            width: 100%; height: 180px; border-radius: 10px; overflow: hidden;
-            border: 1px solid #333;
-        }
-        .address-box { text-align: center; padding-top: 15px; font-size: 14px; }
+        .small-map { width: 100%; height: 150px; border-radius: 15px; overflow: hidden; }
 
-        /* VIP Menu Grid */
-        .menu-header { text-align: center; padding: 40px 0; }
-        .menu-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); }
+        /* Menu Grid */
+        .menu-container { padding: 20px; max-width: 1200px; margin: auto; }
+        .category-title { color: var(--gold); font-family: 'Playfair Display', serif; text-align: center; font-size: 2rem; margin: 40px 0; border-bottom: 1px solid #333; padding-bottom: 10px; }
         
-        .menu-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px; padding: 0 20px 100px; max-width: 1200px; margin: auto;
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        
+        .food-card {
+            background: var(--card); border-radius: 20px; overflow: hidden;
+            border: 1px solid #222; transition: 0.3s; position: relative;
         }
-        .dish-card {
-            background: var(--glass); border-radius: 15px; overflow: hidden;
-            border: 1px solid #222; transition: 0.3s;
+        .food-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .food-img { width: 100%; height: 220px; object-fit: cover; }
+        
+        .price-badge {
+            position: absolute; top: 15px; right: 15px; background: var(--gold);
+            color: #000; padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 14px;
         }
-        .dish-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .dish-img { width: 100%; height: 220px; object-fit: cover; }
-        .dish-info { padding: 15px; text-align: center; }
-        .dish-info h3 { color: var(--gold); margin: 0; font-size: 1.2rem; }
-        .dish-info p { color: #aaa; font-size: 0.9rem; margin: 5px 0 0; }
 
-        /* Order Bar */
+        .food-info { padding: 20px; }
+        .food-info h3 { color: var(--gold); margin: 0; font-size: 1.2rem; }
+        .food-info p { color: #888; font-size: 0.85rem; margin: 8px 0 0; }
+
+        /* Floating Contact */
         .order-bar {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 10px; z-index: 1000; width: 90%; max-width: 500px;
+            position: fixed; bottom: 0; width: 100%; background: #000;
+            padding: 15px 0; display: flex; justify-content: center; gap: 15px; border-top: 1px solid var(--gold); z-index: 999;
         }
-        .btn {
-            flex: 1; padding: 15px; border-radius: 50px; text-decoration: none;
-            font-weight: bold; text-align: center; display: flex; align-items: center;
-            justify-content: center; gap: 10px; color: white;
-        }
+        .btn { padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; color: #fff; display: flex; align-items: center; gap: 10px; }
         .btn-call { background: #1a73e8; }
         .btn-wa { background: #25D366; }
     </style>
@@ -72,47 +61,72 @@
 
     <header>
         <h1>Shan-E-Punjab</h1>
-        <p class="sub-tag">BOKARO'S FINEST PUNJABI DINING</p>
+        <p style="color: #ccc; letter-spacing: 3px;">VIP DINING BOKARO</p>
     </header>
 
     <div class="map-box">
         <div class="small-map">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.8858807358!2d86.14371537533166!3d23.644243578744577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f423ac9287f4cb%3A0x6cc0165a7d741e1e!2sShan-e-punjab!5e0!3m2!1sen!2sin!4v1715600000000" 
-                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-            </iframe>
+            <iframe src="https://maps.google.com/?cid=5829997875091272712&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ8" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <div class="address-box">
-            <i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> Above Haryana Handloom, Sector 4, Bokaro Steel City
-        </div>
+        <p style="font-size: 12px; margin-top: 8px;"><i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> Sector 4, Bokaro Steel City</p>
     </div>
 
-    <section class="menu-header">
-        <h2>Our Culinary Masterpieces</h2>
+    <section class="menu-container">
+        <h2 class="category-title">Navratri Special [NONG]</h2>
+        <div class="grid">
+            <div class="food-card">
+                <span class="price-badge">₹320.00</span>
+                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec" class="food-img">
+                <div class="food-info">
+                    <h3>Chilli Paneer [NONG]</h3>
+                    <p>Lightly battered and deep fried paneer cubes in thick chilli sauce.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <span class="price-badge">₹320.00</span>
+                <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7" class="food-img">
+                <div class="food-info">
+                    <h3>Paneer Butter Masala [NONG]</h3>
+                    <p>Cottage cheese simmered in a rich, buttery, and creamy gravy.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <span class="price-badge">₹320.00</span>
+                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d" class="food-img">
+                <div class="food-info">
+                    <h3>Shahi Paneer [NONG]</h3>
+                    <p>Achari Paneer patty, lavished with butter gravy. Prepared without Onion & Garlic.</p>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <span class="price-badge">₹320.00</span>
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0" class="food-img">
+                <div class="food-info">
+                    <h3>Veg Biryani [NONG]</h3>
+                    <p>Delicious savory rice dish loaded with spices and saffron rice with aloo.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="category-title">Main Course Special</h2>
+        <div class="grid">
+             <div class="food-card">
+                <span class="price-badge">₹450.00</span>
+                <img src="https://images.unsplash.com/photo-1603894527134-11b77ee35bc9" class="food-img">
+                <div class="food-info">
+                    <h3>Butter Chicken</h3>
+                    <p>The most rated Punjabi delight in Bokaro.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <div class="menu-grid">
-        <div class="dish-card">
-            <img src="https://images.unsplash.com/photo-1603894527134-11b77ee35bc9?q=80&w=500" class="dish-img">
-            <div class="dish-info"><h3>Butter Chicken Premium</h3><p>Traditional rich tomato gravy.</p></div>
-        </div>
-        <div class="dish-card">
-            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=500" class="dish-img">
-            <div class="dish-info"><h3>Paneer Tikka Platter</h3><p>Clay oven grilled cottage cheese.</p></div>
-        </div>
-        <div class="dish-card">
-            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=500" class="dish-img">
-            <div class="dish-info"><h3>Dal Makhani VIP</h3><p>Overnight slow cooked black lentils.</p></div>
-        </div>
-        <div class="dish-card">
-            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=500" class="dish-img">
-            <div class="dish-info"><h3>Chicken Dum Biryani</h3><p>Aromatic long grain basmati rice.</p></div>
-        </div>
-        </div>
-
     <div class="order-bar">
-        <a href="tel:09430704405" class="btn btn-call"><i class="fas fa-phone"></i> CALL NOW</a>
-        <a href="https://wa.me/919430704405" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+        <a href="tel:09430704405" class="btn btn-call"><i class="fas fa-phone"></i> Call Now</a>
+        <a href="https://wa.me/919430704405" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     </div>
 
 </body>
