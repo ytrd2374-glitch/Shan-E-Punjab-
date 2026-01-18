@@ -3,150 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shan-E-Punjab | VIP Experience</title>
+    <title>Shan-E-Punjab | VIP Bokaro</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
         :root {
-            --premium-gold: #D4AF37;
-            --dark-bg: #121212;
-            --card-bg: #1E1E1E;
-            --text-light: #F5F5F5;
-            --google-blue: #1a73e8;
+            --gold: #D4AF37;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
         }
-
-        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--dark-bg); color: var(--text-light); }
-
-        /* VIP Header */
+        body { font-family: 'Poppins', sans-serif; background-color: var(--dark); color: #fff; margin: 0; }
+        
+        /* Premium Header */
         header {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000');
-            background-size: cover; padding: 50px 20px; text-align: center; border-bottom: 3px solid var(--premium-gold);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000');
+            background-size: cover; text-align: center; padding: 80px 20px;
+            border-bottom: 2px solid var(--gold);
         }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); margin: 0; }
+        .sub-tag { font-size: 1.2rem; letter-spacing: 3px; color: #ccc; }
 
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--premium-gold); margin: 0; }
-
-        /* Google Map Section */
-        .map-section {
-            padding: 20px;
-            max-width: 900px;
-            margin: 20px auto;
-            background: var(--card-bg);
-            border-radius: 20px;
+        /* Compact Map Section */
+        .map-box {
+            max-width: 600px; margin: -40px auto 30px; background: #1a1a1a;
+            padding: 15px; border-radius: 15px; border: 1px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .small-map {
+            width: 100%; height: 180px; border-radius: 10px; overflow: hidden;
             border: 1px solid #333;
         }
+        .address-box { text-align: center; padding-top: 15px; font-size: 14px; }
 
-        .map-container {
-            width: 100%;
-            height: 250px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 1px solid var(--premium-gold);
+        /* VIP Menu Grid */
+        .menu-header { text-align: center; padding: 40px 0; }
+        .menu-header h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); }
+        
+        .menu-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; padding: 0 20px 100px; max-width: 1200px; margin: auto;
         }
-
-        /* Google Maps Action Buttons */
-        .map-actions {
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #333;
+        .dish-card {
+            background: var(--glass); border-radius: 15px; overflow: hidden;
+            border: 1px solid #222; transition: 0.3s;
         }
+        .dish-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .dish-img { width: 100%; height: 220px; object-fit: cover; }
+        .dish-info { padding: 15px; text-align: center; }
+        .dish-info h3 { color: var(--gold); margin: 0; font-size: 1.2rem; }
+        .dish-info p { color: #aaa; font-size: 0.9rem; margin: 5px 0 0; }
 
-        .map-btn {
-            text-decoration: none;
-            color: var(--google-blue);
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
+        /* Order Bar */
+        .order-bar {
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 10px; z-index: 1000; width: 90%; max-width: 500px;
         }
-
-        .map-icon {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #444;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            background: #252525;
+        .btn {
+            flex: 1; padding: 15px; border-radius: 50px; text-decoration: none;
+            font-weight: bold; text-align: center; display: flex; align-items: center;
+            justify-content: center; gap: 10px; color: white;
         }
-
-        /* Order & Contact Info */
-        .contact-card {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .btn-main {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--premium-gold);
-            color: black;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 10px;
-            transition: 0.3s;
-        }
-
-        .btn-wa { background: #25D366; color: white; }
-
-        .address-text {
-            font-size: 14px;
-            color: #bbb;
-            margin: 15px 0;
-            line-height: 1.5;
-        }
+        .btn-call { background: #1a73e8; }
+        .btn-wa { background: #25D366; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Shan-E-Punjab</h1>
-        <p style="color: var(--premium-gold);">Bokaro's Most Rated Punjabi Restaurant</p>
+        <p class="sub-tag">BOKARO'S FINEST PUNJABI DINING</p>
     </header>
 
-    <section class="map-section">
-        <div class="map-container">
+    <div class="map-box">
+        <div class="small-map">
             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.0!2d86.15!3d23.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f423!2sAbove%20Haryana%20Handloom%2C%20Sector%204!5e0!3m2!1sen!2sin!4v1700000000000" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.8858807358!2d86.14371537533166!3d23.644243578744577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f423ac9287f4cb%3A0x6cc0165a7d741e1e!2sShan-e-punjab!5e0!3m2!1sen!2sin!4v1715600000000" 
                 width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
             </iframe>
         </div>
-
-        <div class="map-actions">
-            <a href="https://www.google.com/maps/dir//Shan-E-Punjab+Bokaro" target="_blank" class="map-btn">
-                <div class="map-icon"><i class="fas fa-directions"></i></div> Directions
-            </a>
-            <a href="tel:09430704405" class="map-btn">
-                <div class="map-icon"><i class="fas fa-phone-alt"></i></div> Call
-            </a>
-            <a href="https://www.google.com/maps/search/Shan-E-Punjab+Bokaro/@23.67,86.15,15z" target="_blank" class="map-btn">
-                <div class="map-icon"><i class="fas fa-map-marked-alt"></i></div> View Map
-            </a>
+        <div class="address-box">
+            <i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> Above Haryana Handloom, Sector 4, Bokaro Steel City
         </div>
+    </div>
 
-        <div class="contact-card">
-            <div class="address-text">
-                <i class="fas fa-map-marker-alt" style="color: var(--premium-gold);"></i> 
-                Above Haryana Handloom, Sector 4, Bokaro Steel City, Jharkhand 827004
-            </div>
-            
-            <a href="tel:09430704405" class="btn-main">
-                <i class="fas fa-phone"></i> Call to Order
-            </a>
-            <a href="https://wa.me/919430704405" class="btn-main btn-wa">
-                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-            </a>
-        </div>
+    <section class="menu-header">
+        <h2>Our Culinary Masterpieces</h2>
     </section>
+
+    <div class="menu-grid">
+        <div class="dish-card">
+            <img src="https://images.unsplash.com/photo-1603894527134-11b77ee35bc9?q=80&w=500" class="dish-img">
+            <div class="dish-info"><h3>Butter Chicken Premium</h3><p>Traditional rich tomato gravy.</p></div>
+        </div>
+        <div class="dish-card">
+            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=500" class="dish-img">
+            <div class="dish-info"><h3>Paneer Tikka Platter</h3><p>Clay oven grilled cottage cheese.</p></div>
+        </div>
+        <div class="dish-card">
+            <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?q=80&w=500" class="dish-img">
+            <div class="dish-info"><h3>Dal Makhani VIP</h3><p>Overnight slow cooked black lentils.</p></div>
+        </div>
+        <div class="dish-card">
+            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?q=80&w=500" class="dish-img">
+            <div class="dish-info"><h3>Chicken Dum Biryani</h3><p>Aromatic long grain basmati rice.</p></div>
+        </div>
+        </div>
+
+    <div class="order-bar">
+        <a href="tel:09430704405" class="btn btn-call"><i class="fas fa-phone"></i> CALL NOW</a>
+        <a href="https://wa.me/919430704405" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+    </div>
 
 </body>
 </html>
