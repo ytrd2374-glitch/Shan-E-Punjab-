@@ -3,107 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shan-E-Punjab Bokaro | Official</title>
+    <title>Shan-E-Punjab | Official Website</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f1f3f4; color: #3c4043; }
-        
-        /* Header */
         header { background: white; padding: 16px; border-bottom: 1px solid #dadce0; }
-        .title-section h1 { margin: 0; font-size: 22px; font-weight: 500; color: #202124; }
-        
-        /* Google Action Buttons */
+        .title-section h1 { margin: 0; font-size: 22px; font-weight: 500; }
+        .rating-row { display: flex; align-items: center; gap: 6px; margin-top: 4px; color: #70757a; font-size: 14px; }
+        .stars { color: #fbbc04; }
         .actions-bar { display: flex; justify-content: space-around; padding: 16px; background: white; border-bottom: 1px solid #dadce0; }
         .action-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #1a73e8; font-size: 12px; font-weight: 500; }
         .icon-circle { width: 36px; height: 36px; border: 1px solid #dadce0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; font-size: 16px; }
-
-        /* Order Buttons (WhatsApp & Call) */
         .order-actions { display: flex; gap: 12px; padding: 16px; background: white; margin-top: 8px; }
-        .btn-order { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .btn-order { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; }
         .btn-wa { background: #25D366; color: white; }
         .btn-phone { background: #1a73e8; color: white; }
-
-        /* Info & Location */
         .info-section { background: white; padding: 8px 16px; margin-top: 8px; }
-        .info-row { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid #f1f3f4; font-size: 14px; }
-        .info-row i { color: #1a73e8; margin-top: 3px; width: 20px; text-align: center; }
-        
-        /* Timings Table */
-        .timings { font-size: 13px; color: #3c4043; width: 100%; margin-top: 5px; }
-        .timings td { padding: 2px 0; }
-        .day { font-weight: 500; width: 100px; }
-
-        /* Menu */
-        .menu-container { background: white; margin-top: 8px; padding: 16px; margin-bottom: 100px; }
+        .info-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid #f1f3f4; font-size: 14px; }
+        .info-row i { color: #1a73e8; width: 20px; }
+        .map-container { background: white; margin-top: 8px; padding: 16px; }
+        .map-iframe { width: 100%; height: 200px; border: 0; border-radius: 8px; }
+        .menu-container { background: white; margin-top: 8px; padding: 16px; margin-bottom: 80px; }
         .menu-card { display: flex; gap: 12px; padding: 16px 0; border-bottom: 1px solid #f1f3f4; }
         .menu-img { width: 80px; height: 80px; border-radius: 8px; object-fit: cover; }
+        .price { font-weight: bold; }
+        .bottom-nav { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 15px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
     <header>
         <div class="title-section">
-            <h1>Shan-E-Punjab</h1>
-            <div style="color: #70757a; font-size: 14px; margin-top: 4px;">Restaurant in Bokaro Steel City</div>
+            <h1>Shan-E-Punjab (Bihar/Local)</h1>
+            <div class="rating-row">
+                <span>4.2</span>
+                <span class="stars">★★★★☆</span>
+                <span>(500+)</span>
+            </div>
+            <p style="margin: 4px 0; font-size: 14px;">Punjabi & North Indian Specialty</p>
         </div>
     </header>
 
     <div class="actions-bar">
-        <a href="https://www.google.com/maps?q=Shan-E-Punjab+Sector+4+Bokaro" class="action-item">
-            <div class="icon-circle"><i class="fas fa-directions"></i></div>Directions
-        </a>
-        <a href="tel:09430704405" class="action-item">
-            <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>Call
-        </a>
-        <a href="#" class="action-item">
-            <div class="icon-circle"><i class="fas fa-share-alt"></i></div>Share
-        </a>
+        <a href="#" class="action-item"><div class="icon-circle"><i class="fas fa-directions"></i></div>Directions</a>
+        <a href="tel:+919430704405" class="action-item"><div class="icon-circle"><i class="fas fa-phone-alt"></i></div>Call</a>
+        <a href="#" class="action-item"><div class="icon-circle"><i class="fas fa-share-alt"></i></div>Share</a>
     </div>
 
     <div class="order-actions">
-        <a href="tel:09430704405" class="btn-order btn-phone"><i class="fas fa-phone-alt"></i> Call Now</a>
-        <a href="https://wa.me/919430704405?text=I%20want%20to%20order%20from%20Shan-E-Punjab%20Bokaro" class="btn-order btn-wa">
-            <i class="fab fa-whatsapp"></i> WhatsApp Order
-        </a>
+        <a href="tel:+919430704405" class="btn-order btn-phone"><i class="fas fa-phone-alt"></i> Call Now</a>
+        <a href="https://wa.me/919430704405?text=Hi, I want to order from Shan-E-Punjab" class="btn-order btn-wa"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
     </div>
 
     <div class="info-section">
         <div class="info-row">
             <i class="fas fa-map-marker-alt"></i>
-            <div>
-                <strong>Above Haryana Handloom</strong><br>
-                Sector 4, Bokaro Steel City,<br>
-                Jharkhand 827004
-            </div>
+            <span>Near Wildlife Sanctuary, Topchanchi, Dhanbad, Jharkhand 827004 (Near Bihar Border)</span>
         </div>
-        
         <div class="info-row">
             <i class="far fa-clock"></i>
-            <div>
-                <span style="color: #188038; font-weight: bold;">Open Today: 10:00 am–10:30 pm</span>
-                <table class="timings">
-                    <tr><td class="day">Mon - Sun</td><td>10:00 am–10:30 pm</td></tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="info-row">
-            <i class="fas fa-phone-alt"></i>
-            <span>094307 04405</span>
+            <span><span style="color: green; font-weight: bold;">Open 24 Hours</span></span>
         </div>
     </div>
 
+    <div class="map-container">
+        <h2 style="font-size: 16px; margin-bottom: 10px;">Location on Map</h2>
+        <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.902!2d86.1819!3d23.9087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6035bba6e2aad%3A0x2f326d191304b110!2sShaan%20e%20punjab%20hotel!5e0!3m2!1sen!2sin!4v1700000000000"></iframe>
+    </div>
+
     <div class="menu-container">
-        <h2 style="font-size: 18px; font-weight: 500;">Menu Highlights</h2>
+        <h2 style="font-size: 18px;">Popular Menu</h2>
         <div class="menu-card">
             <div style="flex:1;">
-                <h3>Special Tandoori Chicken</h3>
-                <p style="font-size: 13px; color: #70757a;">Authentic Punjabi taste roasted in clay oven.</p>
+                <h3>Butter Chicken</h3>
+                <span class="price">₹350</span>
+                <p style="font-size: 13px; color: #70757a;">Desi style butter chicken with rich gravy.</p>
             </div>
-            <img src="https://via.placeholder.com/80?text=Food" class="menu-img">
+            <img src="https://via.placeholder.com/80" class="menu-img">
         </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" style="color:#1a73e8; text-decoration:none;">Overview</a>
+        <a href="#" style="text-decoration:none; color:#70757a;">Menu</a>
+        <a href="#" style="text-decoration:none; color:#70757a;">Reviews</a>
     </div>
 
 </body>
