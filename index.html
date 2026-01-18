@@ -3,109 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shan-E-Punjab | VIP Dining</title>
+    <title>Shan-E-Punjab | VIP Bokaro</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #0d0d0d; --card: #1a1a1a; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; scroll-behavior: smooth; padding-bottom: 80px; }
+        :root { --gold: #D4AF37; --dark: #0a0a0a; --card: #1a1a1a; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 90px; }
         
         header {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000');
-            padding: 70px 20px; text-align: center; border-bottom: 2px solid var(--gold);
+            padding: 60px 20px; text-align: center; border-bottom: 2px solid var(--gold);
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 3.2rem; color: var(--gold); margin: 0; }
-        .tagline { color: #ccc; letter-spacing: 4px; font-size: 0.9rem; margin-top: 10px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin: 0; }
 
-        /* Timing & Location Box */
-        .info-container {
-            max-width: 500px; margin: -50px auto 30px; background: var(--card);
-            padding: 20px; border-radius: 20px; border: 1px solid var(--gold);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.9); text-align: center;
+        /* Chhota Google Map - Sahi Link ke saath */
+        .map-section {
+            max-width: 450px; margin: -40px auto 30px; background: var(--card);
+            padding: 10px; border-radius: 20px; border: 1px solid var(--gold);
+            box-shadow: 0 15px 35px rgba(0,0,0,1); text-align: center;
         }
-        .status-badge { background: #2ecc71; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 15px; display: inline-block; }
-        .timing-text { font-size: 1.1rem; color: var(--gold); font-weight: 600; margin: 10px 0; }
-        .address-text { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; }
+        .small-map { width: 100%; height: 160px; border-radius: 15px; overflow: hidden; }
 
-        /* Gallery */
-        .gallery-section { padding: 20px; max-width: 1200px; margin: auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .food-card { border-radius: 15px; overflow: hidden; background: #222; border: 1px solid #333; position: relative; }
-        .food-img { width: 100%; height: 250px; object-fit: cover; }
+        .info-bar { margin-top: 10px; font-size: 13px; }
+        .info-bar span { color: var(--gold); font-weight: bold; display: block; margin-bottom: 5px; }
 
-        /* Menu Button */
-        .menu-btn-wrap { text-align: center; margin: 40px 0; }
-        .btn-gold { 
-            background: var(--gold); color: #000; padding: 15px 35px; border-radius: 30px; 
-            font-weight: bold; text-decoration: none; display: inline-block; transition: 0.3s;
+        /* VIP Photo Gallery (Bina Price) */
+        .gallery-title { text-align: center; color: var(--gold); font-family: 'Playfair Display', serif; margin: 40px 0 20px; font-size: 2rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; max-width: 1200px; margin: auto; }
+        .dish-card { background: var(--card); border-radius: 15px; overflow: hidden; border: 1px solid #222; transition: 0.3s; }
+        .dish-card:hover { border-color: var(--gold); transform: scale(1.02); }
+        .dish-img { width: 100%; height: 230px; object-fit: cover; }
+
+        /* Interactive Menu Button */
+        .menu-trigger { text-align: center; margin: 50px 0; }
+        .btn-menu { 
+            background: var(--gold); color: #000; padding: 18px 45px; border-radius: 50px; 
+            font-weight: bold; font-size: 1.1rem; cursor: pointer; border: none;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); transition: 0.3s;
         }
+        .btn-menu:active { transform: scale(0.95); }
 
-        /* Hidden Menu */
-        #price-list { display: none; padding: 20px; max-width: 800px; margin: auto; background: #111; border-radius: 15px; }
-        .menu-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; }
-        .item-name { color: var(--gold); font-weight: 500; }
+        /* Hidden Menu with Prices */
+        #full-menu { display: none; padding: 20px; max-width: 900px; margin: auto; background: #111; border-radius: 20px; margin-bottom: 40px; }
+        .menu-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #222; }
+        .item-name { color: var(--gold); font-weight: 600; }
+        .item-p { color: #fff; font-weight: bold; }
 
         /* Sticky Footer */
         .footer-nav {
             position: fixed; bottom: 0; width: 100%; background: #000;
             padding: 15px 0; display: flex; justify-content: center; gap: 15px; border-top: 1px solid var(--gold); z-index: 1000;
         }
-        .f-btn { padding: 12px 25px; border-radius: 25px; color: #fff; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .f-btn { padding: 12px 30px; border-radius: 30px; color: #fff; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px; font-size: 15px; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Shan-E-Punjab</h1>
-        <div class="tagline">BOKARO'S PREMIUM PUNJABI DINING</div>
+        <p style="letter-spacing: 3px; color: #ccc; font-size: 0.8rem;">BOKARO STEEL CITY</p>
     </header>
 
-    <div class="info-container">
-        <div class="status-badge"><i class="fas fa-clock"></i> OPEN NOW</div>
-        <div class="timing-text">Everyday: 10:00 AM – 10:30 PM</div>
-        <div class="address-text">
-            <i class="fas fa-map-marker-alt" style="color:var(--gold)"></i> 
-            Above Haryana Handloom, Sector 4, Bokaro Steel City
+    <div class="map-section">
+        <div class="small-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3655.207850024982!2d86.14781707533221!3d23.63274717875043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f423ac7487f4cb%3A0x14cd66867d74171e!2sShan-E-Punjab!5e0!3m2!1sen!2sin!4v1715421234567!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
-        <a href="https://maps.google.com/?cid=7900089038360004499&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ0" style="color:var(--gold); text-decoration:none; font-size:14px; font-weight:bold;">
-            <i class="fas fa-directions"></i> Get Directions
-        </a>
+        <div class="info-bar">
+            <span><i class="fas fa-clock"></i> 10:00 AM – 10:30 PM</span>
+            <p style="color:#888; margin:0;"><i class="fas fa-map-marker-alt"></i> Sector 4, Above Haryana Handloom</p>
+        </div>
     </div>
 
-    <section class="gallery-section">
-        <div class="grid">
-            <div class="food-card"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec" class="food-img"></div>
-            <div class="food-card"><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7" class="food-img"></div>
-            <div class="food-card"><img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d" class="food-img"></div>
-        </div>
+    <h2 class="gallery-title">Our Best Cuisines</h2>
+    <div class="grid">
+        <div class="dish-card"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec" class="dish-img"></div>
+        <div class="dish-card"><img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7" class="dish-img"></div>
+        <div class="dish-card"><img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d" class="dish-img"></div>
+    </div>
 
-        <div class="menu-btn-wrap">
-            <a href="javascript:void(0)" class="btn-gold" onclick="showMenu()">VIEW MENU & PRICES</a>
-        </div>
+    <div class="menu-trigger">
+        <button class="btn-menu" onclick="toggleMenu()">CLICK TO VIEW MENU & PRICES</button>
+    </div>
 
-        <div id="price-list">
-            <h3 style="color:var(--gold); text-align:center;">Navratri Specials (NONG)</h3>
-            <div class="menu-row"><span class="item-name">Chilli Paneer</span><span>₹320</span></div>
-            <div class="menu-row"><span class="item-name">Paneer Butter Masala</span><span>₹320</span></div>
-            <div class="menu-row"><span class="item-name">Shahi Paneer</span><span>₹320</span></div>
-            <div class="menu-row"><span class="item-name">Veg Biryani</span><span>₹320</span></div>
-            <br>
-            <h3 style="color:var(--gold); text-align:center;">Main Course</h3>
-            <div class="menu-row"><span class="item-name">Butter Chicken</span><span>₹450</span></div>
-        </div>
-    </section>
+    <div id="full-menu">
+        <h3 style="color:var(--gold); text-align:center;">Navratri Special (No Onion Garlic)</h3>
+        <div class="menu-row"><span class="item-name">Chilli Paneer [NONG]</span><span class="item-p">₹320</span></div>
+        <div class="menu-row"><span class="item-name">Paneer Butter Masala [NONG]</span><span class="item-p">₹320</span></div>
+        <div class="menu-row"><span class="item-name">Shahi Paneer [NONG]</span><span class="item-p">₹320</span></div>
+        <div class="menu-row"><span class="item-name">Veg Biryani [NONG]</span><span class="item-p">₹320</span></div>
+        
+        <h3 style="color:var(--gold); text-align:center; margin-top:30px;">Main Course</h3>
+        <div class="menu-row"><span class="item-name">Butter Chicken Special</span><span class="item-p">₹450</span></div>
+        <div class="menu-row"><span class="item-name">Dal Makhani VIP</span><span class="item-p">₹280</span></div>
+    </div>
 
     <div class="footer-nav">
-        <a href="tel:09430704405" class="f-btn" style="background:#1a73e8;"><i class="fas fa-phone"></i> CALL</a>
+        <a href="tel:09430704405" class="f-btn" style="background:#1a73e8;"><i class="fas fa-phone"></i> CALL NOW</a>
         <a href="https://wa.me/919430704405" class="f-btn" style="background:#25D366;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
     </div>
 
     <script>
-        function showMenu() {
-            var x = document.getElementById("price-list");
-            x.style.display = (x.style.display === "block") ? "none" : "block";
-            if(x.style.display === "block") window.scrollTo(0, x.offsetTop - 100);
+        function toggleMenu() {
+            var menu = document.getElementById("full-menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+                window.scrollTo(0, menu.offsetTop - 50);
+            }
         }
     </script>
 </body>
