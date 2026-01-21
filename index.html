@@ -7,91 +7,101 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #0a0a0a; --card: #1a1a1a; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 40px; }
+        :root { --gold: #D4AF37; --dark: #000; --card: #111; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; }
         
         header {
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
-                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000');
-            padding: 40px 20px 20px; text-align: center;
+            padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--gold);
+            background: linear-gradient(180deg, #1a1a1a, #000);
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Contact Section - Only at Top */
-        .top-contact {
-            background: #111;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--gold);
-            margin-bottom: 30px;
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+        
+        /* Hidden Number Contact Section */
+        .contact-box { padding: 20px; text-align: center; }
+        .btn-container { display: flex; gap: 10px; justify-content: center; max-width: 400px; margin: 0 auto; }
+        .action-btn { 
+            flex: 1; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; 
+            display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff;
         }
-        .contact-btns { display: flex; gap: 10px; justify-content: center; max-width: 400px; margin: 15px auto 0; }
-        .c-btn { 
-            flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; 
-            font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px;
+        .btn-call { background: #fff; color: #000; }
+        .btn-wa { background: #25D366; }
+
+        /* Menu Section Styling */
+        .menu-section { padding: 20px; max-width: 800px; margin: auto; }
+        .category-title { 
+            color: var(--gold); border-bottom: 1px solid var(--gold); 
+            padding-bottom: 5px; margin-top: 30px; text-transform: uppercase; letter-spacing: 2px;
         }
-        .c-call { background: #fff; color: #000; }
-        .c-wa { background: #25D366; color: #fff; }
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .item-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #222; }
+        .item-card img { width: 100%; height: 120px; object-fit: cover; }
+        .item-info { padding: 10px; }
+        .item-name { font-size: 14px; display: block; height: 40px; }
+        .item-price { color: var(--gold); font-weight: bold; font-size: 16px; margin-top: 5px; display: block; }
 
-        /* Gallery */
-        .gallery-title { text-align: center; color: var(--gold); font-family: 'Playfair Display', serif; margin: 20px 0; font-size: 1.8rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; max-width: 1200px; margin: auto; }
-        .dish-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #333; }
-        .dish-img { width: 100%; height: 230px; object-fit: cover; }
-
-        /* Menu Button */
-        .menu-trigger { text-align: center; margin: 30px 0; }
-        .btn-menu { 
-            background: var(--gold); color: #000; padding: 15px 35px; border-radius: 50px; 
-            font-weight: bold; font-size: 1rem; cursor: pointer; border: none;
-        }
-
-        /* Menu List */
-        #full-menu { display: none; padding: 20px; max-width: 500px; margin: 0 auto 40px; background: #111; border-radius: 15px; border: 1px solid #222; }
-        .menu-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; }
-        .item-name { color: #eee; }
-        .item-p { color: var(--gold); font-weight: bold; }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Hotel & Family Restaurant</h1>
-        <p style="color: #888; font-size: 0.8rem; margin-top: 5px;">The Taste of Happiness</p>
-    </header>
+<header>
+    <h1>Hotel & Family Restaurant</h1>
+    <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">The Taste of Happiness</p>
+</header>
 
-    <div class="top-contact">
-        <div style="font-size: 22px; font-weight: bold; color: #fff;">9158777048</div>
-        <div class="contact-btns">
-            <a href="tel:+919158777048" class="c-btn c-call"><i class="fas fa-phone-alt"></i> CALL NOW</a>
-            <a href="https://wa.me/919158777048" class="c-btn c-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+<div class="contact-box">
+    <div class="btn-container">
+        <a href="tel:+919158777048" class="action-btn btn-call"><i class="fas fa-phone-alt"></i> CALL</a>
+        <a href="https://wa.me/919158777048" class="action-btn btn-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+    </div>
+</div>
+
+<div class="menu-section">
+    <h2 class="category-title">Chinese Veg</h2>
+    <div class="menu-grid">
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400" alt="Crispy Veg">
+            <div class="item-info"><span class="item-name">Crispy Veg</span><span class="item-price">190/-</span></div>
+        </div>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1601050690597-df056fb4ce7d?w=400" alt="Veg Bullet">
+            <div class="item-info"><span class="item-name">Veg Bullet</span><span class="item-price">260/-</span></div>
+        </div>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400" alt="Veg Manchurian">
+            <div class="item-info"><span class="item-name">Veg Manchurian</span><span class="item-price">170/-</span></div>
+        </div>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400" alt="Chilly Paneer">
+            <div class="item-info"><span class="item-name">Chilly Paneer</span><span class="item-price">210/-</span></div>
         </div>
     </div>
 
-    <h2 class="gallery-title">Today's Special</h2>
-    <div class="grid">
-        <div class="dish-card"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=500" class="dish-img"></div>
-        <div class="dish-card"><img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=500" class="dish-img"></div>
-        <div class="dish-card"><img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500" class="dish-img"></div>
+    <h2 class="category-title">Chinese Non-Veg</h2>
+    <div class="menu-grid">
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400" alt="Chilly Chicken">
+            <div class="item-info"><span class="item-name">Chilly Chicken</span><span class="item-price">220/-</span></div>
+        </div>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400" alt="Chicken 65">
+            <div class="item-info"><span class="item-name">Chicken 65</span><span class="item-price">230/-</span></div>
+        </div>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=400" alt="Chicken Lollypop">
+            <div class="item-info"><span class="item-name">Chicken Lollypop (6 pc)</span><span class="item-price">260/-</span></div>
+        </div>
+        <div class="item-card">
+            <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?w=400" alt="Chicken Satay">
+            <div class="item-info"><span class="item-name">Chicken Satay</span><span class="item-price">270/-</span></div>
+        </div>
     </div>
+</div>
 
-    <div class="menu-trigger">
-        <button class="btn-menu" onclick="toggleMenu()">VIEW FULL MENU</button>
-    </div>
+<footer>
+    © 2026 HOTEL & FAMILY RESTAURANT<br>
+    PURE TASTE | PREMIUM QUALITY
+</footer>
 
-    <div id="full-menu">
-        <div class="menu-row"><span class="item-name">Paneer Manchurian</span><span class="item-p">₹190</span></div>
-        <div class="menu-row"><span class="item-name">Veg Bullet Special</span><span class="item-p">₹270</span></div>
-        <div class="menu-row"><span class="item-name">Paneer Tikka</span><span class="item-p">₹210</span></div>
-        <div class="menu-row"><span class="item-name">Paneer Chilli Special</span><span class="item-p">₹220</span></div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("full-menu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-            if(menu.style.display === "block") window.scrollTo({ top: menu.offsetTop - 20, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
