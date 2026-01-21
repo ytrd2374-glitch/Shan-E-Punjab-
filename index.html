@@ -8,76 +8,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --dark: #0a0a0a; --card: #1a1a1a; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 90px; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 40px; }
         
         header {
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
                         url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000');
-            padding: 50px 20px; text-align: center; border-bottom: 3px solid var(--gold);
+            padding: 40px 20px 20px; text-align: center;
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Contact Section (Map ki jagah) */
-        .contact-section {
-            max-width: 400px; margin: -30px auto 30px; background: var(--card);
-            padding: 25px; border-radius: 20px; border: 2px solid var(--gold);
-            box-shadow: 0 15px 35px rgba(0,0,0,1); text-align: center;
+        /* Contact Section - Only at Top */
+        .top-contact {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            margin-bottom: 30px;
         }
-        .phone-number { font-size: 26px; font-weight: 900; color: #fff; display: block; margin-bottom: 20px; letter-spacing: 1.5px; }
-        
-        .contact-btns { display: flex; gap: 12px; justify-content: center; }
+        .contact-btns { display: flex; gap: 10px; justify-content: center; max-width: 400px; margin: 15px auto 0; }
         .c-btn { 
-            flex: 1; padding: 14px; border-radius: 12px; text-decoration: none; 
-            font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px;
+            flex: 1; padding: 12px; border-radius: 8px; text-decoration: none; 
+            font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px;
         }
-        .c-call { background: #fff; color: #000; box-shadow: 0 4px 15px rgba(255,255,255,0.1); }
-        .c-wa { background: #25D366; color: #fff; box-shadow: 0 4px 15px rgba(37,211,102,0.2); }
+        .c-call { background: #fff; color: #000; }
+        .c-wa { background: #25D366; color: #fff; }
 
-        .info-bar { margin-top: 15px; font-size: 14px; color: var(--gold); font-weight: 500; }
-
-        /* Photo Gallery */
-        .gallery-title { text-align: center; color: var(--gold); font-family: 'Playfair Display', serif; margin: 40px 0 20px; font-size: 1.8rem; }
+        /* Gallery */
+        .gallery-title { text-align: center; color: var(--gold); font-family: 'Playfair Display', serif; margin: 20px 0; font-size: 1.8rem; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 0 20px; max-width: 1200px; margin: auto; }
-        .dish-card { background: var(--card); border-radius: 15px; overflow: hidden; border: 1px solid #333; }
-        .dish-img { width: 100%; height: 230px; object-fit: cover; border-bottom: 2px solid #222; }
+        .dish-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #333; }
+        .dish-img { width: 100%; height: 230px; object-fit: cover; }
 
         /* Menu Button */
-        .menu-trigger { text-align: center; margin: 40px 0; }
+        .menu-trigger { text-align: center; margin: 30px 0; }
         .btn-menu { 
-            background: var(--gold); color: #000; padding: 18px 45px; border-radius: 50px; 
-            font-weight: bold; font-size: 1.1rem; cursor: pointer; border: none;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            background: var(--gold); color: #000; padding: 15px 35px; border-radius: 50px; 
+            font-weight: bold; font-size: 1rem; cursor: pointer; border: none;
         }
 
-        /* Menu Display */
-        #full-menu { display: none; padding: 20px; max-width: 600px; margin: auto; background: #111; border-radius: 20px; margin-bottom: 40px; border: 1px solid #222; }
-        .menu-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #222; }
-        .item-name { color: #eee; font-weight: 500; }
+        /* Menu List */
+        #full-menu { display: none; padding: 20px; max-width: 500px; margin: 0 auto 40px; background: #111; border-radius: 15px; border: 1px solid #222; }
+        .menu-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; }
+        .item-name { color: #eee; }
         .item-p { color: var(--gold); font-weight: bold; }
-
-        /* Fixed Bottom Nav */
-        .footer-nav {
-            position: fixed; bottom: 0; width: 100%; background: #000;
-            padding: 15px 0; display: flex; justify-content: center; gap: 15px; border-top: 2px solid var(--gold); z-index: 1000;
-        }
-        .f-btn { padding: 12px 25px; border-radius: 30px; color: #fff; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 10px; font-size: 14px; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Hotel & Family Restaurant</h1>
-        <p style="letter-spacing: 2px; color: #888; font-size: 0.9rem; margin-top: 10px;">The Taste of Happiness</p>
+        <p style="color: #888; font-size: 0.8rem; margin-top: 5px;">The Taste of Happiness</p>
     </header>
 
-    <div class="contact-section">
-        <span class="phone-number">9158777048</span>
+    <div class="top-contact">
+        <div style="font-size: 22px; font-weight: bold; color: #fff;">9158777048</div>
         <div class="contact-btns">
             <a href="tel:+919158777048" class="c-btn c-call"><i class="fas fa-phone-alt"></i> CALL NOW</a>
             <a href="https://wa.me/919158777048" class="c-btn c-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
-        </div>
-        <div class="info-bar">
-            <span><i class="far fa-clock"></i> OPEN: 10:00 AM – 11:00 PM</span>
         </div>
     </div>
 
@@ -89,33 +76,21 @@
     </div>
 
     <div class="menu-trigger">
-        <button class="btn-menu" onclick="toggleMenu()">VIEW FULL MENU & PRICE</button>
+        <button class="btn-menu" onclick="toggleMenu()">VIEW FULL MENU</button>
     </div>
 
     <div id="full-menu">
-        <h3 style="color:var(--gold); text-align:center; border-bottom: 1px solid var(--gold); padding-bottom:10px;">Our Menu</h3>
         <div class="menu-row"><span class="item-name">Paneer Manchurian</span><span class="item-p">₹190</span></div>
         <div class="menu-row"><span class="item-name">Veg Bullet Special</span><span class="item-p">₹270</span></div>
-        <div class="menu-row"><span class="item-name">Manchurian Gravy</span><span class="item-p">₹190</span></div>
         <div class="menu-row"><span class="item-name">Paneer Tikka</span><span class="item-p">₹210</span></div>
         <div class="menu-row"><span class="item-name">Paneer Chilli Special</span><span class="item-p">₹220</span></div>
-        <div class="menu-row"><span class="item-name">Crispy Paneer</span><span class="item-p">₹240</span></div>
-    </div>
-
-    <div class="footer-nav">
-        <a href="tel:+919158777048" class="f-btn" style="background:#1a73e8;"><i class="fas fa-phone"></i> CALL</a>
-        <a href="https://wa.me/919158777048" class="f-btn" style="background:#25D366;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
     </div>
 
     <script>
         function toggleMenu() {
             var menu = document.getElementById("full-menu");
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
-            } else {
-                menu.style.display = "block";
-                window.scrollTo({ top: menu.offsetTop - 50, behavior: 'smooth' });
-            }
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+            if(menu.style.display === "block") window.scrollTo({ top: menu.offsetTop - 20, behavior: 'smooth' });
         }
     </script>
 </body>
