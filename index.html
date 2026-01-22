@@ -3,80 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel & Family Restaurant | VIP</title>
+    <title>VIP Hotel & Family Restaurant</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #050505; --card: #111; }
+        :root { --gold: #D4AF37; --dark: #050505; --card: #111; --red: #ff4d4d; }
         body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 100px; }
         
-        /* Badi Photo Section */
-        .hero-image-container {
-            width: 100%; height: 60vh; position: relative;
-            border-bottom: 4px solid var(--gold); overflow: hidden;
+        header {
+            height: 35vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1500');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            border-bottom: 3px solid var(--gold);
         }
-        #mainHeroPhoto {
-            width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
-        }
-        .hero-overlay {
-            position: absolute; bottom: 0; width: 100%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 20px; text-align: center;
-        }
-        .hero-overlay h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.8rem; }
+        h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); margin: 0; letter-spacing: 2px; }
 
-        /* Menu Section */
-        .container { max-width: 500px; margin: auto; padding: 20px; }
-        .menu-header { 
-            text-align: center; margin: 20px 0; font-family: 'Cinzel'; 
-            color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 10px;
-        }
+        .container { max-width: 500px; margin: auto; padding: 15px; }
+        .menu-card { background: var(--card); border: 1px solid #222; border-radius: 15px; padding: 15px; margin-top: -40px; box-shadow: 0 10px 30px #000; }
         
-        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #222; }
-        .item-name { font-size: 15px; color: #eee; }
-        .item-price { color: var(--gold); font-weight: bold; }
+        .search-box { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid var(--gold); background: #000; color: #fff; margin-bottom: 20px; box-sizing: border-box; outline: none; }
+
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #222; }
+        .item-info { flex-grow: 1; }
+        .item-name { font-size: 14px; color: #eee; display: block; }
+        .item-price { color: var(--gold); font-weight: bold; font-size: 13px; }
         
-        .order-btn { background: var(--gold); color: #000; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .btn-group { display: flex; gap: 8px; align-items: center; }
+        .order-btn { background: var(--gold); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 11px; text-transform: uppercase; }
+        .del-btn { background: none; color: var(--red); border: none; cursor: pointer; font-size: 16px; opacity: 0.6; }
+        .del-btn:hover { opacity: 1; }
 
-        /* Admin Controls */
-        .admin-controls { 
-            background: #111; padding: 20px; border-radius: 15px; border: 1px dashed #444; margin-top: 30px; 
-        }
-        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
-        .btn-action { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
-        .btn-gold { background: var(--gold); color: #000; }
-        .btn-blue { background: #1a73e8; color: #fff; }
+        /* Admin Add Section */
+        .admin-panel { background: #0a0a0a; padding: 20px; border-radius: 15px; border: 1px dashed #333; margin-top: 30px; text-align: center; }
+        .admin-panel h3 { color: var(--gold); font-size: 14px; margin-bottom: 15px; font-family: 'Cinzel'; }
+        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #222; background: #111; color: #fff; box-sizing: border-box; }
+        .btn-save { width: 100%; background: linear-gradient(45deg, #D4AF37, #B8860B); color: #000; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-        /* Footer Buttons */
-        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); border-top: 1px solid var(--gold); z-index: 100; box-sizing: border-box; }
-        .f-btn { flex: 1; text-align: center; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+        /* Sticky Footer */
+        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); box-sizing: border-box; border-top: 1px solid var(--gold); z-index: 100; }
+        .f-btn { flex: 1; text-align: center; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     </style>
 </head>
 <body>
 
-    <div class="hero-image-container">
-        <img id="mainHeroPhoto" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1000" alt="Special Dish">
-        <div class="hero-overlay">
-            <h1>Hotel & Family Restaurant</h1>
-            <p style="font-size: 12px; letter-spacing: 2px;">THE ROYAL DINING EXPERIENCE</p>
-        </div>
-    </div>
+    <header>
+        <h1>Hotel & Family Restaurant</h1>
+        <p style="color: #666; font-size: 10px; letter-spacing: 4px; margin-top: 5px;">PREMIUM DINING EXPERIENCE</p>
+    </header>
 
     <div class="container">
-        <h2 class="menu-header">Our Menu</h2>
-        <div id="menu-list">
-            </div>
+        <div class="menu-card">
+            <input type="text" class="search-box" placeholder="Dish ka naam likhein..." id="search" onkeyup="filterMenu()">
+            
+            <div id="menu-list">
+                </div>
+        </div>
 
-        <div class="admin-controls">
-            <p style="color:var(--gold); font-size: 12px; text-align: center;">ADMIN PANEL (PERMANENT SETTINGS)</p>
-            
-            <input type="text" id="photoUrl" class="admin-input" placeholder="Photo Link daalein (URL)">
-            <button class="btn-action btn-blue" onclick="changePhoto()">Update Header Photo</button>
-            <hr style="border: 0.5px solid #222; margin: 20px 0;">
-            
-            <input type="text" id="itemName" class="admin-input" placeholder="Item Name">
-            <input type="text" id="itemPrice" class="admin-input" placeholder="Price (e.g. 250/-)">
-            <button class="btn-action btn-gold" onclick="saveItem()">Add to Menu</button>
+        <div class="admin-panel">
+            <h3>Add New Item to Menu</h3>
+            <input type="text" id="newName" class="admin-input" placeholder="Item Name (e.g. Chicken 65)">
+            <input type="text" id="newPrice" class="admin-input" placeholder="Price (e.g. 230/-)">
+            <button class="btn-save" onclick="saveItem()">ADD TO PERMANENT MENU</button>
         </div>
     </div>
 
@@ -86,38 +75,43 @@
     </div>
 
     <script>
-        // Website load hone par settings check karein
+        // Default Items (Sirf pehli baar dikhenge)
+        const defaultItems = [
+            {name: "Crispy Veg", price: "190/-"},
+            {name: "Veg Bullet", price: "260/-"},
+            {name: "Chilly Chicken", price: "220/-"}
+        ];
+
         window.onload = function() {
-            const savedPhoto = localStorage.getItem("headerPhoto");
-            if(savedPhoto) document.getElementById("mainHeroPhoto").src = savedPhoto;
-            
             if (!localStorage.getItem("myMenu")) {
-                localStorage.setItem("myMenu", JSON.stringify([{name: "Crispy Veg", price: "190/-"}]));
+                localStorage.setItem("myMenu", JSON.stringify(defaultItems));
             }
             displayMenu();
         };
 
-        // Photo badalne ka function
-        function changePhoto() {
-            const url = document.getElementById("photoUrl").value;
-            if(url) {
-                localStorage.setItem("headerPhoto", url);
-                document.getElementById("mainHeroPhoto").src = url;
-                alert("Photo badal di gayi hai!");
-            }
-        }
-
-        // Menu save karne ka function
         function saveItem() {
-            let name = document.getElementById("itemName").value;
-            let price = document.getElementById("itemPrice").value;
+            let name = document.getElementById("newName").value;
+            let price = document.getElementById("newPrice").value;
+
             if(name && price) {
                 let items = JSON.parse(localStorage.getItem("myMenu"));
                 items.push({name: name, price: price});
                 localStorage.setItem("myMenu", JSON.stringify(items));
+                
+                document.getElementById("newName").value = "";
+                document.getElementById("newPrice").value = "";
                 displayMenu();
-                document.getElementById("itemName").value = "";
-                document.getElementById("itemPrice").value = "";
+            } else {
+                alert("Please naam aur rate dono likhein.");
+            }
+        }
+
+        function deleteItem(index) {
+            if(confirm("Kya aap is item ko menu se hatana chahte hain?")) {
+                let items = JSON.parse(localStorage.getItem("myMenu"));
+                items.splice(index, 1);
+                localStorage.setItem("myMenu", JSON.stringify(items));
+                displayMenu();
             }
         }
 
@@ -125,17 +119,33 @@
             let items = JSON.parse(localStorage.getItem("myMenu"));
             let container = document.getElementById("menu-list");
             container.innerHTML = "";
+            
             items.forEach((item, index) => {
                 container.innerHTML += `
                     <div class="item-row">
-                        <div><span class="item-name">${item.name}</span><br><span class="item-price">${item.price}</span></div>
-                        <button class="order-btn" onclick="orderNow('${item.name}')">ORDER</button>
+                        <div class="item-info">
+                            <span class="item-name">${item.name}</span>
+                            <span class="item-price">${item.price}</span>
+                        </div>
+                        <div class="btn-group">
+                            <button class="order-btn" onclick="orderNow('${item.name}', '${item.price}')">ORDER</button>
+                            <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-alt"></i></button>
+                        </div>
                     </div>`;
             });
         }
 
-        function orderNow(name) {
-            window.open(`https://wa.me/919158777048?text=I want to order: ${name}`, '_blank');
+        function orderNow(name, price) {
+            let msg = `Hello Hotel & Family Restaurant, I want to order: ${name} (${price})`;
+            window.open(`https://wa.me/919158777048?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function filterMenu() {
+            let val = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementsByClassName("item-row");
+            for (let row of rows) {
+                row.style.display = row.innerText.toLowerCase().includes(val) ? "flex" : "none";
+            }
         }
     </script>
 </body>
