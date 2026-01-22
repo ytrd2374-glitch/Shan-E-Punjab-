@@ -3,111 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel & Family Restaurant | VIP Menu</title>
+    <title>Hotel & Family Restaurant | VIP Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --dark: #050505; --card: #111; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; transition: 0.5s; }
         
-        header {
-            height: 50vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
                         url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1500');
             background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; border-bottom: 3px solid var(--gold);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
         }
-        h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); margin: 0; letter-spacing: 3px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); margin-bottom: 20px; letter-spacing: 5px; }
 
-        /* Contact Section - Number Hidden */
-        .vip-contact {
-            max-width: 450px; margin: -50px auto 40px; background: #1a1a1a;
-            padding: 25px; border-radius: 15px; border: 1px solid var(--gold);
-            box-shadow: 0 15px 40px rgba(0,0,0,1); text-align: center; position: relative;
-        }
-        .contact-btns { display: flex; gap: 15px; justify-content: center; }
-        .c-btn { 
-            flex: 1; padding: 15px; border-radius: 50px; text-decoration: none; 
-            font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-        .c-call { background: #fff; color: #000; }
-        .c-wa { background: #25D366; color: #fff; }
-
-        /* Menu Styling */
-        .menu-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .category-box { background: var(--card); border: 1px solid #222; border-radius: 20px; padding: 25px; margin-bottom: 30px; }
-        .category-title { 
-            font-family: 'Cinzel', serif; color: var(--gold); border-bottom: 2px solid var(--gold); 
-            padding-bottom: 10px; margin-bottom: 20px; text-align: center; font-size: 1.5rem;
-        }
-        .menu-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; transition: 0.3s; }
-        .menu-item:hover { background: rgba(212, 175, 55, 0.05); transform: scale(1.02); }
-        .item-name { color: #eee; font-weight: 400; font-size: 1.1rem; }
-        .item-price { color: var(--gold); font-weight: bold; font-size: 1.1rem; }
-
-        /* Future Add Option Section */
-        .add-more { 
-            text-align: center; border: 2px dashed #444; padding: 30px; border-radius: 20px; margin-top: 50px;
-            color: #666; font-style: italic; 
+        /* VIP Buttons */
+        .btn-gold {
+            background: linear-gradient(45deg, #D4AF37, #B8860B); color: #000; 
+            padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none;
+            cursor: pointer; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); text-transform: uppercase;
         }
 
-        footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #111; letter-spacing: 2px; }
+        /* Full Screen Menu Overlay */
+        #menu-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark); z-index: 1000; overflow-y: auto; padding: 20px;
+        }
+        .close-menu { position: fixed; top: 20px; right: 20px; font-size: 30px; color: var(--gold); cursor: pointer; }
+
+        .search-bar { width: 100%; max-width: 500px; padding: 15px; border-radius: 30px; border: 1px solid var(--gold); background: #111; color: #fff; margin: 30px auto; display: block; }
+
+        .category-title { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-top: 40px; border-bottom: 1px solid #333; }
+        .menu-list { max-width: 600px; margin: auto; }
+        .menu-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #222; }
+
+        /* Admin Add Section */
+        .admin-box { background: #111; padding: 20px; border-radius: 15px; border: 1px dashed var(--gold); margin: 50px auto; max-width: 500px; }
+        .admin-box input { width: 45%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none; }
+        .btn-add { background: var(--gold); color: #000; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
+
+        .contact-fixed { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 2000; }
+        .c-btn { padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <header>
+    <div class="hero" id="home-screen">
         <h1>Hotel & Family Restaurant</h1>
-        <p style="color: #ccc; letter-spacing: 5px; margin-top: 10px;">EXCLUSIVELY FOR YOU</p>
-    </header>
-
-    <div class="vip-contact">
-        <div class="contact-btns">
-            <a href="tel:+919158777048" class="c-btn c-call"><i class="fas fa-phone-alt"></i> CALL NOW</a>
-            <a href="https://wa.me/919158777048" class="c-btn c-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
-        </div>
+        <p style="color: #888; letter-spacing: 3px; margin-bottom: 40px;">THE ART OF LUXURY DINING</p>
+        <button class="btn-gold" onclick="openMenu()">Click to View VIP Menu</button>
     </div>
 
-    <div class="menu-container">
+    <div id="menu-overlay">
+        <span class="close-menu" onclick="closeMenu()">&times;</span>
+        <h2 style="text-align:center; color: var(--gold); font-family: 'Cinzel';">The Royal Menu</h2>
         
-        <div class="category-box">
-            <h2 class="category-title">CHINESE VEG STARTERS</h2>
-            <div class="menu-item"><span class="item-name">Crispy Veg</span><span class="item-price">190/-</span></div>
-            <div class="menu-item"><span class="item-name">Veg Bullet</span><span class="item-price">260/-</span></div>
-            <div class="menu-item"><span class="item-name">Veg Manchurian</span><span class="item-price">170/-</span></div>
-            <div class="menu-item"><span class="item-name">Chilly Paneer</span><span class="item-price">210/-</span></div>
-            <div class="menu-item"><span class="item-name">Paneer 65</span><span class="item-price">220/-</span></div>
-            <div class="menu-item"><span class="item-name">Paneer Schezwan</span><span class="item-price">240/-</span></div>
-            <div class="menu-item"><span class="item-name">Paneer Manchurian Dry</span><span class="item-price">220/-</span></div>
-            <div class="menu-item"><span class="item-name">Paneer Satay</span><span class="item-price">290/-</span></div>
+        <input type="text" class="search-bar" placeholder="Search dish name..." id="menuSearch" onkeyup="searchMenu()">
+
+        <div class="menu-list" id="full-menu-list">
+            <h3 class="category-title">Chinese Veg</h3>
+            <div class="menu-item"><span>Crispy Veg</span><span style="color:var(--gold)">190/-</span></div>
+            <div class="menu-item"><span>Veg Bullet</span><span style="color:var(--gold)">260/-</span></div>
+            <div class="menu-item"><span>Veg Manchurian</span><span style="color:var(--gold)">170/-</span></div>
+            <div class="menu-item"><span>Chilly Paneer</span><span style="color:var(--gold)">210/-</span></div>
+            <div class="menu-item"><span>Paneer 65</span><span style="color:var(--gold)">220/-</span></div>
+
+            <h3 class="category-title">Chinese Non-Veg</h3>
+            <div class="menu-item"><span>Chilly Chicken</span><span style="color:var(--gold)">220/-</span></div>
+            <div class="menu-item"><span>Chicken 65</span><span style="color:var(--gold)">230/-</span></div>
+            <div class="menu-item"><span>Chicken Lollypop (6 pc)</span><span style="color:var(--gold)">260/-</span></div>
         </div>
 
-        <div class="category-box">
-            <h2 class="category-title">CHINESE NON-VEG STARTERS</h2>
-            <div class="menu-item"><span class="item-name">Chilly Chicken</span><span class="item-price">220/-</span></div>
-            <div class="menu-item"><span class="item-name">Chicken Al Baik</span><span class="item-price">220/-</span></div>
-            <div class="menu-item"><span class="item-name">Chicken 65</span><span class="item-price">230/-</span></div>
-            <div class="menu-item"><span class="item-name">Chicken Black Paper</span><span class="item-price">230/-</span></div>
-            <div class="menu-item"><span class="item-name">Chicken Schezwan</span><span class="item-price">230/-</span></div>
-            <div class="menu-item"><span class="item-name">Chicken Lollypop (6 pic)</span><span class="item-price">260/-</span></div>
-            <div class="menu-item"><span class="item-name">Chicken Satay</span><span class="item-price">270/-</span></div>
+        <div class="admin-box">
+            <h4 style="margin-top:0; color:var(--gold)">Add New Item to Menu</h4>
+            <input type="text" id="itemName" placeholder="Item Name">
+            <input type="text" id="itemPrice" placeholder="Price (e.g. 200/-)">
+            <button class="btn-add" onclick="addNewItem()">Add Item Now</button>
         </div>
-
-        <div class="category-box">
-            <h2 class="category-title">EXTRA SPECIAL ITEMS</h2>
-            <div class="menu-item"><span class="item-name">Coming Soon...</span><span class="item-price">--</span></div>
-            <p style="text-align: center; color: #555; font-size: 0.8rem; margin-top: 15px;">
-                (Yahan naye items add karne ke liye code mein ek naya 'menu-item' div daalein)
-            </p>
-        </div>
-
     </div>
 
-    <footer>
-        ESTABLISHED 2026 | THE ULTIMATE DINING EXPERIENCE
-    </footer>
+    <div class="contact-fixed">
+        <a href="tel:+919158777048" class="c-btn" style="background:#fff; color:#000;"><i class="fas fa-phone"></i> CALL</a>
+        <a href="https://wa.me/919158777048" class="c-btn" style="background:#25D366; color:#fff;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+    </div>
 
+    <script>
+        function openMenu() { document.getElementById("menu-overlay").style.display = "block"; }
+        function closeMenu() { document.getElementById("menu-overlay").style.display = "none"; }
+
+        // Search Function
+        function searchMenu() {
+            let input = document.getElementById('menuSearch').value.toLowerCase();
+            let items = document.getElementsByClassName('menu-item');
+            for (i = 0; i < items.length; i++) {
+                items[i].style.display = items[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
+            }
+        }
+
+        // Add New Item Function
+        function addNewItem() {
+            let name = document.getElementById("itemName").value;
+            let price = document.getElementById("itemPrice").value;
+            if(name && price) {
+                let div = document.createElement("div");
+                div.className = "menu-item";
+                div.innerHTML = `<span>${name}</span><span style="color:var(--gold)">${price}</span>`;
+                document.getElementById("full-menu-list").appendChild(div);
+                document.getElementById("itemName").value = "";
+                document.getElementById("itemPrice").value = "";
+                alert("Naya item menu mein jud gaya hai!");
+            } else {
+                alert("Please dono box bhariye.");
+            }
+        }
+    </script>
 </body>
-                                                                                                                         </html>
-                                                                                      
+</html>
