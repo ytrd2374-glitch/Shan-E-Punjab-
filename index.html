@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Hotel & Family Restaurant</title>
+    <title>Hotel & Family Restaurant | VIP Control</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #050505; --card: #111; --red: #ff4d4d; }
+        :root { --gold: #D4AF37; --dark: #050505; --card: #111; --red: #ff4444; }
         body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 100px; }
-        
-        header {
-            height: 35vh;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), 
-                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1500');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-            border-bottom: 3px solid var(--gold);
-        }
-        h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); margin: 0; letter-spacing: 2px; }
 
-        .container { max-width: 500px; margin: auto; padding: 15px; }
-        .menu-card { background: var(--card); border: 1px solid #222; border-radius: 15px; padding: 15px; margin-top: -40px; box-shadow: 0 10px 30px #000; }
-        
-        .search-box { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid var(--gold); background: #000; color: #fff; margin-bottom: 20px; box-sizing: border-box; outline: none; }
+        header { padding: 30px 20px; text-align: center; background: #000; border-bottom: 2px solid var(--gold); }
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
 
-        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #222; }
-        .item-info { flex-grow: 1; }
-        .item-name { font-size: 14px; color: #eee; display: block; }
-        .item-price { color: var(--gold); font-weight: bold; font-size: 13px; }
-        
-        .btn-group { display: flex; gap: 8px; align-items: center; }
-        .order-btn { background: var(--gold); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 11px; text-transform: uppercase; }
-        .del-btn { background: none; color: var(--red); border: none; cursor: pointer; font-size: 16px; opacity: 0.6; }
-        .del-btn:hover { opacity: 1; }
+        /* Gallery Style */
+        .gallery-container { padding: 20px; max-width: 1000px; margin: auto; }
+        .section-title { font-family: 'Cinzel'; color: var(--gold); text-align: center; font-size: 1.5rem; margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+        .img-wrap { position: relative; width: 100%; height: 180px; border-radius: 10px; overflow: hidden; border: 1px solid #333; }
+        .gallery-item { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+        .del-img-btn { position: absolute; top: 5px; right: 5px; background: var(--red); color: #fff; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; }
 
-        /* Admin Add Section */
-        .admin-panel { background: #0a0a0a; padding: 20px; border-radius: 15px; border: 1px dashed #333; margin-top: 30px; text-align: center; }
-        .admin-panel h3 { color: var(--gold); font-size: 14px; margin-bottom: 15px; font-family: 'Cinzel'; }
-        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #222; background: #111; color: #fff; box-sizing: border-box; }
-        .btn-save { width: 100%; background: linear-gradient(45deg, #D4AF37, #B8860B); color: #000; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* Menu Button */
+        .menu-trigger { text-align: center; margin: 30px 0; }
+        .btn-main { background: var(--gold); color: #000; padding: 18px 40px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; font-size: 1rem; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
 
-        /* Sticky Footer */
-        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); box-sizing: border-box; border-top: 1px solid var(--gold); z-index: 100; }
+        /* Overlay */
+        #menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 35px; color: var(--gold); cursor: pointer; }
+
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #222; }
+        .item-actions { display: flex; gap: 10px; align-items: center; }
+        .order-btn { background: var(--gold); color: #000; border: none; padding: 7px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 11px; }
+        .del-text-btn { color: var(--red); background: none; border: none; cursor: pointer; font-size: 16px; }
+
+        /* Admin Panels */
+        .admin-panel { background: #111; padding: 20px; border-radius: 15px; border: 1px dashed #444; margin: 20px auto; max-width: 500px; text-align: center; }
+        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; background: #222; color: #fff; box-sizing: border-box; outline: none; }
+        .btn-save { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; background: #fff; color: #000; }
+
+        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); border-top: 1px solid var(--gold); box-sizing: border-box; z-index: 100; }
         .f-btn { flex: 1; text-align: center; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     </style>
 </head>
@@ -50,22 +47,36 @@
 
     <header>
         <h1>Hotel & Family Restaurant</h1>
-        <p style="color: #666; font-size: 10px; letter-spacing: 4px; margin-top: 5px;">PREMIUM DINING EXPERIENCE</p>
+        <p style="color: #666; font-size: 10px; letter-spacing: 3px;">ROYAL DINING EXPERIENCE</p>
     </header>
 
-    <div class="container">
-        <div class="menu-card">
-            <input type="text" class="search-box" placeholder="Dish ka naam likhein..." id="search" onkeyup="filterMenu()">
-            
-            <div id="menu-list">
-                </div>
-        </div>
+    <div class="gallery-container">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gallery-grid" id="main-gallery">
+            </div>
+    </div>
 
-        <div class="admin-panel">
-            <h3>Add New Item to Menu</h3>
-            <input type="text" id="newName" class="admin-input" placeholder="Item Name (e.g. Chicken 65)">
-            <input type="text" id="newPrice" class="admin-input" placeholder="Price (e.g. 230/-)">
-            <button class="btn-save" onclick="saveItem()">ADD TO PERMANENT MENU</button>
+    <div class="menu-trigger">
+        <button class="btn-main" onclick="toggleMenu(true)">OPEN VIP MENU</button>
+    </div>
+
+    <div class="admin-panel">
+        <h3 style="color:var(--gold); font-size: 13px; margin-top:0;">ADD PHOTO (URL)</h3>
+        <input type="text" id="photoUrl" class="admin-input" placeholder="Paste image link here...">
+        <button class="btn-save" onclick="addPhoto()">SAVE PHOTO</button>
+    </div>
+
+    <div id="menu-overlay">
+        <span class="close-btn" onclick="toggleMenu(false)">&times;</span>
+        <h2 class="section-title" style="margin-top:40px;">Food Menu</h2>
+        <div id="menu-items-list" style="max-width: 600px; margin: auto;">
+            </div>
+
+        <div class="admin-panel" style="margin-top:40px;">
+            <h3 style="color:var(--gold); font-size: 13px;">ADD MENU ITEM</h3>
+            <input type="text" id="itemName" class="admin-input" placeholder="Item Name">
+            <input type="text" id="itemPrice" class="admin-input" placeholder="Price (e.g. 210/-)">
+            <button class="btn-save" style="background:var(--gold)" onclick="addMenuItem()">ADD TO MENU</button>
         </div>
     </div>
 
@@ -75,77 +86,90 @@
     </div>
 
     <script>
-        // Default Items (Sirf pehli baar dikhenge)
-        const defaultItems = [
-            {name: "Crispy Veg", price: "190/-"},
-            {name: "Veg Bullet", price: "260/-"},
-            {name: "Chilly Chicken", price: "220/-"}
-        ];
-
         window.onload = function() {
-            if (!localStorage.getItem("myMenu")) {
-                localStorage.setItem("myMenu", JSON.stringify(defaultItems));
-            }
-            displayMenu();
+            loadGallery();
+            loadMenu();
         };
 
-        function saveItem() {
-            let name = document.getElementById("newName").value;
-            let price = document.getElementById("newPrice").value;
-
-            if(name && price) {
-                let items = JSON.parse(localStorage.getItem("myMenu"));
-                items.push({name: name, price: price});
-                localStorage.setItem("myMenu", JSON.stringify(items));
-                
-                document.getElementById("newName").value = "";
-                document.getElementById("newPrice").value = "";
-                displayMenu();
-            } else {
-                alert("Please naam aur rate dono likhein.");
+        // --- Gallery Controls ---
+        function addPhoto() {
+            let url = document.getElementById("photoUrl").value;
+            if(url) {
+                let photos = JSON.parse(localStorage.getItem("vipPhotos") || "[]");
+                photos.push(url);
+                localStorage.setItem("vipPhotos", JSON.stringify(photos));
+                document.getElementById("photoUrl").value = "";
+                loadGallery();
             }
         }
 
-        function deleteItem(index) {
-            if(confirm("Kya aap is item ko menu se hatana chahte hain?")) {
-                let items = JSON.parse(localStorage.getItem("myMenu"));
+        function deletePhoto(index) {
+            if(confirm("Ye photo gallery se hata dein?")) {
+                let photos = JSON.parse(localStorage.getItem("vipPhotos") || "[]");
+                photos.splice(index, 1);
+                localStorage.setItem("vipPhotos", JSON.stringify(photos));
+                loadGallery();
+            }
+        }
+
+        function loadGallery() {
+            let photos = JSON.parse(localStorage.getItem("vipPhotos") || "[]");
+            let grid = document.getElementById("main-gallery");
+            grid.innerHTML = "";
+            photos.forEach((url, index) => {
+                grid.innerHTML += `
+                    <div class="img-wrap">
+                        <img src="${url}" class="gallery-item">
+                        <button class="del-img-btn" onclick="deletePhoto(${index})">&times;</button>
+                    </div>`;
+            });
+        }
+
+        // --- Menu Controls ---
+        function toggleMenu(show) {
+            document.getElementById("menu-overlay").style.display = show ? "block" : "none";
+        }
+
+        function addMenuItem() {
+            let name = document.getElementById("itemName").value;
+            let price = document.getElementById("itemPrice").value;
+            if(name && price) {
+                let items = JSON.parse(localStorage.getItem("myMenu") || "[]");
+                items.push({name, price});
+                localStorage.setItem("myMenu", JSON.stringify(items));
+                loadMenu();
+                document.getElementById("itemName").value = "";
+                document.getElementById("itemPrice").value = "";
+            }
+        }
+
+        function deleteMenuItem(index) {
+            if(confirm("Ye item menu se hata dein?")) {
+                let items = JSON.parse(localStorage.getItem("myMenu") || "[]");
                 items.splice(index, 1);
                 localStorage.setItem("myMenu", JSON.stringify(items));
-                displayMenu();
+                loadMenu();
             }
         }
 
-        function displayMenu() {
-            let items = JSON.parse(localStorage.getItem("myMenu"));
-            let container = document.getElementById("menu-list");
-            container.innerHTML = "";
-            
+        function loadMenu() {
+            let items = JSON.parse(localStorage.getItem("myMenu") || "[]");
+            let list = document.getElementById("menu-items-list");
+            list.innerHTML = "";
             items.forEach((item, index) => {
-                container.innerHTML += `
+                list.innerHTML += `
                     <div class="item-row">
-                        <div class="item-info">
-                            <span class="item-name">${item.name}</span>
-                            <span class="item-price">${item.price}</span>
-                        </div>
-                        <div class="btn-group">
-                            <button class="order-btn" onclick="orderNow('${item.name}', '${item.price}')">ORDER</button>
-                            <button class="del-btn" onclick="deleteItem(${index})"><i class="fas fa-trash-alt"></i></button>
+                        <div><b>${item.name}</b><br><span style="color:var(--gold); font-size:13px;">${item.price}</span></div>
+                        <div class="item-actions">
+                            <button class="order-btn" onclick="orderNow('${item.name}')">ORDER</button>
+                            <button class="del-text-btn" onclick="deleteMenuItem(${index})"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>`;
             });
         }
 
-        function orderNow(name, price) {
-            let msg = `Hello Hotel & Family Restaurant, I want to order: ${name} (${price})`;
-            window.open(`https://wa.me/919158777048?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        function filterMenu() {
-            let val = document.getElementById("search").value.toLowerCase();
-            let rows = document.getElementsByClassName("item-row");
-            for (let row of rows) {
-                row.style.display = row.innerText.toLowerCase().includes(val) ? "flex" : "none";
-            }
+        function orderNow(name) {
+            window.open(`https://wa.me/919158777048?text=Order: ${name}`, '_blank');
         }
     </script>
 </body>
