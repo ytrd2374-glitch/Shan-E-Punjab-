@@ -3,61 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel & Family Restaurant | VIP Menu</title>
+    <title>Hotel & Family Restaurant | VIP Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --dark: #050505; --card: #111; --red: #ff4444; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 100px; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; }
 
-        header { padding: 30px 20px; text-align: center; background: #000; border-bottom: 2px solid var(--gold); }
+        /* Welcome & Gallery Page */
+        header { padding: 40px 20px; text-align: center; background: #000; border-bottom: 2px solid var(--gold); }
         h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.8rem; letter-spacing: 2px; }
 
-        .container { max-width: 500px; margin: auto; padding: 15px; }
-        
-        /* Category Heading Style */
-        .cat-header { 
-            font-family: 'Cinzel'; color: var(--gold); text-align: center; 
-            font-size: 1.3rem; margin: 30px 0 15px; border-bottom: 1px solid #333; 
-            padding-bottom: 5px; text-transform: uppercase; letter-spacing: 2px;
+        .gallery-preview { padding: 20px; text-align: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 30px; }
+        .gallery-img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid #333; }
+
+        /* Main Menu Button */
+        .open-menu-container { text-align: center; margin: 20px 0 100px; }
+        .btn-open { background: var(--gold); color: #000; padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none; cursor: pointer; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); }
+
+        /* Full Menu Overlay (Hidden initially) */
+        #menu-page { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--dark); z-index: 2000; overflow-y: auto; padding: 20px; box-sizing: border-box; 
         }
+        .close-menu { position: fixed; top: 15px; right: 20px; font-size: 35px; color: var(--gold); cursor: pointer; z-index: 2100; }
 
-        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #222; }
-        .item-info b { font-size: 15px; color: #eee; }
-        .item-info span { color: var(--gold); font-weight: bold; font-size: 14px; margin-left: 10px; }
-        
-        .btn-group { display: flex; gap: 10px; }
-        .order-btn { background: var(--gold); color: #000; border: none; padding: 6px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 11px; }
-        .del-btn { color: var(--red); background: none; border: none; cursor: pointer; font-size: 16px; }
+        /* Search & Menu Content */
+        .search-box { width: 100%; padding: 15px; border-radius: 30px; border: 1px solid var(--gold); background: #111; color: #fff; margin: 40px 0 20px; outline: none; }
+        .cat-header { font-family: 'Cinzel'; color: var(--gold); font-size: 1.3rem; margin: 25px 0 10px; border-bottom: 1px solid #333; padding-bottom: 5px; text-align: center; }
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #222; }
+        .order-btn { background: var(--gold); color: #000; border: none; padding: 8px 18px; border-radius: 5px; font-weight: bold; cursor: pointer; }
 
-        /* Admin Add Section */
-        .admin-panel { background: #0a0a0a; padding: 20px; border-radius: 15px; border: 1px dashed #444; margin-top: 30px; }
-        .admin-panel h3 { color: var(--gold); font-size: 14px; text-align: center; margin-top: 0; }
-        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #111; color: #fff; box-sizing: border-box; }
-        .btn-save { width: 100%; background: var(--gold); color: #000; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        /* Admin Box inside Menu */
+        .admin-box { background: #0a0a0a; padding: 20px; border-radius: 15px; border: 1px dashed #444; margin-top: 40px; }
+        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; background: #222; color: #fff; box-sizing: border-box; }
 
-        /* Sticky Footer */
-        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); border-top: 1px solid var(--gold); box-sizing: border-box; z-index: 100; }
-        .f-btn { flex: 1; text-align: center; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        /* Footer Sticky */
+        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); border-top: 1px solid var(--gold); z-index: 100; box-sizing: border-box; }
+        .f-btn { flex: 1; text-align: center; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Hotel & Family Restaurant</h1>
-        <p style="color: #666; font-size: 10px; letter-spacing: 3px;">PREMIUM DINING</p>
-    </header>
+    <div id="home-page">
+        <header>
+            <h1>Hotel & Family Restaurant</h1>
+            <p style="color: #666; font-size: 11px; letter-spacing: 3px;">THE ROYAL EXPERIENCE</p>
+        </header>
 
-    <div class="container">
-        <div id="full-menu-container">
+        <div class="gallery-preview">
+            <h2 style="font-family: 'Cinzel'; color: var(--gold); font-size: 1.2rem;">Our Specialities</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400" class="gallery-img">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400" class="gallery-img">
+                <img src="https://images.unsplash.com/photo-1631515233349-2960553c0301?w=400" class="gallery-img">
+                <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400" class="gallery-img">
+            </div>
+            
+            <div class="open-menu-container">
+                <button class="btn-open" onclick="openMenu()">VIEW VIP MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-page">
+        <span class="close-menu" onclick="closeMenu()">&times;</span>
+        
+        <h2 style="text-align: center; font-family: 'Cinzel'; color: var(--gold); margin-top: 30px;">Digital Menu</h2>
+        
+        <input type="text" class="search-box" id="searchInput" placeholder="Search dish (e.g. Biryani)..." onkeyup="searchMenu()">
+
+        <div id="menu-content">
             </div>
 
-        <div class="admin-panel">
-            <h3>ADD NEW ITEM TO MENU</h3>
-            <input type="text" id="catName" class="admin-input" placeholder="Category (e.g. BIRYANI or CHINESE)">
-            <input type="text" id="itemName" class="admin-input" placeholder="Dish Name (e.g. Mutton Biryani)">
-            <input type="text" id="itemPrice" class="admin-input" placeholder="Price (e.g. 290/-)">
-            <button class="btn-save" onclick="saveToMenu()">SAVE PERMANENTLY</button>
+        <div class="admin-box">
+            <h3 style="color:var(--gold); font-size: 13px; text-align:center;">ADD NEW DISH</h3>
+            <input type="text" id="catInput" class="admin-input" placeholder="Category (e.g. BIRYANI)">
+            <input type="text" id="nameInput" class="admin-input" placeholder="Dish Name">
+            <input type="text" id="priceInput" class="admin-input" placeholder="Price (e.g. 290/-)">
+            <button class="btn-open" style="width:100%; padding:12px; font-size:14px;" onclick="saveItem()">SAVE TO MENU</button>
         </div>
     </div>
 
@@ -67,70 +92,54 @@
     </div>
 
     <script>
-        window.onload = function() { loadMenu(); };
+        function openMenu() { document.getElementById("menu-page").style.display = "block"; loadMenu(); }
+        function closeMenu() { document.getElementById("menu-page").style.display = "none"; }
 
-        function saveToMenu() {
-            let cat = document.getElementById("catName").value.toUpperCase();
-            let name = document.getElementById("itemName").value;
-            let price = document.getElementById("itemPrice").value;
+        function saveItem() {
+            let cat = document.getElementById("catInput").value.toUpperCase();
+            let name = document.getElementById("nameInput").value;
+            let price = document.getElementById("priceInput").value;
 
             if(cat && name && price) {
                 let menuData = JSON.parse(localStorage.getItem("vipMenuData") || "{}");
-                
-                if(!menuData[cat]) { menuData[cat] = []; }
+                if(!menuData[cat]) menuData[cat] = [];
                 menuData[cat].push({name, price});
-                
                 localStorage.setItem("vipMenuData", JSON.stringify(menuData));
-                loadMenu();
                 
-                // Clear inputs
-                document.getElementById("catName").value = "";
-                document.getElementById("itemName").value = "";
-                document.getElementById("itemPrice").value = "";
-            } else {
-                alert("Please saari details bhariye!");
-            }
-        }
-
-        function deleteItem(cat, index) {
-            if(confirm("Ye item hata dein?")) {
-                let menuData = JSON.parse(localStorage.getItem("vipMenuData"));
-                menuData[cat].splice(index, 1);
-                if(menuData[cat].length === 0) delete menuData[cat];
-                localStorage.setItem("vipMenuData", JSON.stringify(menuData));
+                document.getElementById("catInput").value = "";
+                document.getElementById("nameInput").value = "";
+                document.getElementById("priceInput").value = "";
                 loadMenu();
             }
         }
 
         function loadMenu() {
             let menuData = JSON.parse(localStorage.getItem("vipMenuData") || "{}");
-            let container = document.getElementById("full-menu-container");
+            let container = document.getElementById("menu-content");
             container.innerHTML = "";
 
             for(let category in menuData) {
-                // Create Category Heading
-                let catHtml = `<div class="cat-header">${category}</div>`;
-                container.innerHTML += catHtml;
-
-                // Create Items under this category
+                container.innerHTML += `<div class="cat-header">${category}</div>`;
                 menuData[category].forEach((item, index) => {
                     container.innerHTML += `
                         <div class="item-row">
-                            <div class="item-info">
-                                <b>${item.name}</b>
-                                <span>${item.price}</span>
-                            </div>
-                            <div class="btn-group">
-                                <button class="order-btn" onclick="orderNow('${item.name}', '${item.price}')">ORDER</button>
-                                <button class="del-btn" onclick="deleteItem('${category}', ${index})"><i class="fas fa-trash-alt"></i></button>
-                            </div>
+                            <div><b>${item.name}</b><br><span style="color:var(--gold); font-size:13px;">${item.price}</span></div>
+                            <button class="order-btn" onclick="orderNow('${item.name}')">ORDER</button>
                         </div>`;
                 });
             }
         }
 
-        function orderNow(name, price) {
-            window.open(`https://wa.me/919158777048?text=Order: ${name} (${price})`, '_blank');
+        function searchMenu() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let rows = document.getElementsByClassName('item-row');
+            for (let row of rows) {
+                row.style.display = row.innerText.toLowerCase().includes(input) ? "flex" : "none";
+            }
+        }
+
+        function orderNow(name) {
+            window.open(`https://wa.me/919158777048?text=I want to order: ${name}`, '_blank');
         }
     </script>
 </body>
