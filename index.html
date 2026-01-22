@@ -3,105 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel & Family Restaurant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Hotel & Family Restaurant | VIP Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #000; --card: #111; }
+        :root { --gold: #D4AF37; --dark: #050505; --premium-bg: #111; }
         body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; }
         
-        header {
-            padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--gold);
-            background: linear-gradient(180deg, #1a1a1a, #000);
+        /* VIP Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.9)), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; border-bottom: 3px solid var(--gold);
         }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin: 0; text-transform: uppercase; }
+        .hero h1 { 
+            font-family: 'Cinzel', serif; font-size: 3.5rem; color: var(--gold); margin: 0; 
+            letter-spacing: 5px; text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        .hero p { font-size: 1.2rem; letter-spacing: 4px; color: #ccc; margin-top: 15px; font-weight: 300; }
+
+        /* VIP Floating Contact Box (Number Hidden) */
+        .vip-contact {
+            max-width: 450px; margin: -60px auto 40px; background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+            padding: 35px; border-radius: 20px; border: 1px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,1); text-align: center;
+            position: relative; z-index: 10;
+        }
+        .vip-contact h2 { color: var(--gold); font-size: 1.5rem; margin-bottom: 25px; font-family: 'Cinzel', serif; }
         
-        /* Hidden Number Contact Section */
-        .contact-box { padding: 20px; text-align: center; }
-        .btn-container { display: flex; gap: 10px; justify-content: center; max-width: 400px; margin: 0 auto; }
-        .action-btn { 
-            flex: 1; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; 
-            display: flex; align-items: center; justify-content: center; gap: 10px; color: #fff;
+        .contact-btns { display: flex; gap: 20px; justify-content: center; }
+        .c-btn { 
+            flex: 1; padding: 18px; border-radius: 50px; text-decoration: none; 
+            font-weight: bold; display: flex; align-items: center; justify-content: center; 
+            gap: 12px; transition: 0.4s; font-size: 1rem; border: 1px solid transparent;
         }
-        .btn-call { background: #fff; color: #000; }
-        .btn-wa { background: #25D366; }
+        .c-call { background: #fff; color: #000; }
+        .c-wa { background: #25D366; color: #fff; }
+        .c-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--gold); }
 
-        /* Menu Section Styling */
-        .menu-section { padding: 20px; max-width: 800px; margin: auto; }
-        .category-title { 
-            color: var(--gold); border-bottom: 1px solid var(--gold); 
-            padding-bottom: 5px; margin-top: 30px; text-transform: uppercase; letter-spacing: 2px;
+        /* VIP Gallery Title */
+        .section-title { 
+            text-align: center; color: var(--gold); font-family: 'Cinzel', serif; 
+            margin: 60px 0 30px; font-size: 2.5rem; letter-spacing: 3px;
         }
-        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
-        .item-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #222; }
-        .item-card img { width: 100%; height: 120px; object-fit: cover; }
-        .item-info { padding: 10px; }
-        .item-name { font-size: 14px; display: block; height: 40px; }
-        .item-price { color: var(--gold); font-weight: bold; font-size: 16px; margin-top: 5px; display: block; }
 
-        footer { text-align: center; padding: 40px; color: #444; font-size: 12px; }
+        /* Dishes Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 30px; max-width: 1200px; margin: auto; }
+        .dish-card { 
+            background: var(--premium-bg); border-radius: 20px; overflow: hidden; 
+            border: 1px solid #222; transition: 0.5s; cursor: pointer;
+        }
+        .dish-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .dish-img { width: 100%; height: 280px; object-fit: cover; opacity: 0.8; transition: 0.5s; }
+        .dish-card:hover .dish-img { opacity: 1; }
+
+        /* Expandable Menu Section */
+        .menu-container { text-align: center; margin: 80px 0; padding: 0 20px; }
+        .menu-wrapper { 
+            max-width: 700px; margin: auto; background: #0a0a0a; 
+            border: 1px solid #333; border-radius: 30px; padding: 40px;
+        }
+        .btn-menu { 
+            background: linear-gradient(45deg, #D4AF37, #B8860B); color: #000; 
+            padding: 22px 60px; border-radius: 50px; font-weight: 900; 
+            font-size: 1.3rem; cursor: pointer; border: none; letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); transition: 0.3s;
+        }
+        .btn-menu:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6); }
+
+        footer { text-align: center; padding: 50px; color: #444; font-size: 1rem; letter-spacing: 2px; border-top: 1px solid #111; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Hotel & Family Restaurant</h1>
-    <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">The Taste of Happiness</p>
-</header>
+    <section class="hero">
+        <h1>Hotel & Family Restaurant</h1>
+        <p>A TRADITION OF LUXURY & TASTE</p>
+    </section>
 
-<div class="contact-box">
-    <div class="btn-container">
-        <a href="tel:+919158777048" class="action-btn btn-call"><i class="fas fa-phone-alt"></i> CALL</a>
-        <a href="https://wa.me/919158777048" class="action-btn btn-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
-    </div>
-</div>
-
-<div class="menu-section">
-    <h2 class="category-title">Chinese Veg</h2>
-    <div class="menu-grid">
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400" alt="Crispy Veg">
-            <div class="item-info"><span class="item-name">Crispy Veg</span><span class="item-price">190/-</span></div>
-        </div>
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1601050690597-df056fb4ce7d?w=400" alt="Veg Bullet">
-            <div class="item-info"><span class="item-name">Veg Bullet</span><span class="item-price">260/-</span></div>
-        </div>
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400" alt="Veg Manchurian">
-            <div class="item-info"><span class="item-name">Veg Manchurian</span><span class="item-price">170/-</span></div>
-        </div>
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400" alt="Chilly Paneer">
-            <div class="item-info"><span class="item-name">Chilly Paneer</span><span class="item-price">210/-</span></div>
+    <div class="vip-contact">
+        <h2>Exclusive Reservations</h2>
+        <div class="contact-btns">
+            <a href="tel:+919158777048" class="c-btn c-call"><i class="fas fa-phone-alt"></i> CALL NOW</a>
+            <a href="https://wa.me/919158777048" class="c-btn c-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
         </div>
     </div>
 
-    <h2 class="category-title">Chinese Non-Veg</h2>
-    <div class="menu-grid">
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400" alt="Chilly Chicken">
-            <div class="item-info"><span class="item-name">Chilly Chicken</span><span class="item-price">220/-</span></div>
-        </div>
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=400" alt="Chicken 65">
-            <div class="item-info"><span class="item-name">Chicken 65</span><span class="item-price">230/-</span></div>
-        </div>
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=400" alt="Chicken Lollypop">
-            <div class="item-info"><span class="item-name">Chicken Lollypop (6 pc)</span><span class="item-price">260/-</span></div>
-        </div>
-        <div class="item-card">
-            <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?w=400" alt="Chicken Satay">
-            <div class="item-info"><span class="item-name">Chicken Satay</span><span class="item-price">270/-</span></div>
+    <h2 class="section-title">The Chef's Selection</h2>
+    <div class="grid">
+        <div class="dish-card"><img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800" class="dish-img"></div>
+        <div class="dish-card"><img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=800" class="dish-img"></div>
+        <div class="dish-card"><img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=800" class="dish-img"></div>
+    </div>
+
+    <div class="menu-container">
+        <div class="menu-wrapper">
+            <h3 style="color: #888; margin-bottom: 25px;">EXPERIENCE OUR FULL MENU</h3>
+            <button class="btn-menu" onclick="alert('Menu details aap yahan add kar sakte hain!')">
+                CLICK FOR VIP MENU & PRICES
+            </button>
         </div>
     </div>
-</div>
 
-<footer>
-    © 2026 HOTEL & FAMILY RESTAURANT<br>
-    PURE TASTE | PREMIUM QUALITY
-</footer>
+    <footer>
+        ESTABLISHED 2026<br>
+        <span style="color: var(--gold);">EXCELLENCE IN EVERY BITE</span>
+    </footer>
 
 </body>
 </html>
