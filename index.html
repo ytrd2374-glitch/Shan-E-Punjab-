@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Dining | Final Secure</title>
+    <title>The Royal Dining | Secure 7679</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -12,19 +12,16 @@
         header { padding: 30px 20px; text-align: center; background: #000; border-bottom: 2px solid var(--gold); }
         h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.5rem; }
 
-        /* VIP Gallery */
         .gallery-container { padding: 15px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
         .img-wrap { position: relative; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid #333; background: #111; }
         .gallery-img { width: 100%; height: 100%; object-fit: cover; }
         .del-btn { position: absolute; top: 5px; right: 5px; background: var(--red); color: #fff; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; z-index: 10; }
 
-        /* Admin Controls */
         .admin-box { background: #111; padding: 20px; border-radius: 15px; border: 1px dashed #444; margin: 20px; }
         .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; background: #000; color: #fff; box-sizing: border-box; }
         .btn-gold { background: var(--gold); color: #000; padding: 15px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; width: 100%; font-size: 1rem; }
 
-        /* Menu Modal */
         #menu-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; overflow-y: auto; padding: 20px; box-sizing: border-box; }
         .search-box { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid var(--gold); background: #111; color: #fff; margin: 40px 0 20px; outline: none; }
         .item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #222; }
@@ -37,20 +34,19 @@
 
     <header>
         <h1>THE ROYAL DINING</h1>
-        <p style="font-size: 10px; color: #666; letter-spacing: 2px;">PREMIUM QUALITY FOOD</p>
+        <p style="font-size: 10px; color: #666; letter-spacing: 2px;">SECURE ADMIN PANEL</p>
     </header>
 
     <div class="gallery-container">
         <h2 style="text-align:center; color:var(--gold); font-family:Cinzel; font-size:1.1rem;">Chef's Gallery</h2>
-        <div class="gallery-grid" id="main-gallery">
-            </div>
+        <div class="gallery-grid" id="main-gallery"></div>
     </div>
 
     <button class="btn-gold" style="width:80%; margin: 20px auto; display:block;" onclick="openMenu()">VIEW FULL MENU</button>
 
     <div class="admin-box">
-        <h3 style="color:var(--gold); font-size: 12px; text-align:center; margin-top:0;">ADMIN: UPLOAD GALLERY PHOTO</h3>
-        <input type="password" id="passPhoto" class="admin-input" placeholder="Enter Password">
+        <h3 style="color:var(--gold); font-size: 12px; text-align:center; margin-top:0;">ADMIN: UPLOAD PHOTO</h3>
+        <input type="password" id="passPhoto" class="admin-input" placeholder="Password (7679)">
         <input type="file" id="fileInput" class="admin-input" accept="image/*">
         <button class="btn-gold" onclick="handlePhotoUpload()">UPLOAD NOW</button>
     </div>
@@ -62,11 +58,11 @@
         <div id="menu-content"></div>
 
         <div class="admin-box">
-            <h3 style="color:var(--gold); font-size: 12px; text-align:center;">ADMIN: ADD DISH TO MENU</h3>
-            <input type="password" id="passMenu" class="admin-input" placeholder="Enter Password">
-            <input type="text" id="catIn" class="admin-input" placeholder="Category (e.g. CHINESE)">
+            <h3 style="color:var(--gold); font-size: 12px; text-align:center;">ADMIN: ADD DISH</h3>
+            <input type="password" id="passMenu" class="admin-input" placeholder="Password (7679)">
+            <input type="text" id="catIn" class="admin-input" placeholder="Category">
             <input type="text" id="nameIn" class="admin-input" placeholder="Dish Name">
-            <input type="text" id="priceIn" class="admin-input" placeholder="Price (e.g. 250/-)">
+            <input type="text" id="priceIn" class="admin-input" placeholder="Price">
             <button class="btn-gold" onclick="addDish()">SAVE DISH</button>
         </div>
     </div>
@@ -77,18 +73,17 @@
     </div>
 
     <script>
-        const MY_PASS = "7679"; // Aapka Secret Password
+        const MY_PASS = "7679"; // Aapka Naya Password
 
         window.onload = () => { renderGallery(); renderMenu(); };
 
         function openMenu() { document.getElementById("menu-page").style.display = "block"; }
         function closeMenu() { document.getElementById("menu-page").style.display = "none"; }
 
-        // --- Gallery Photo Management ---
         function handlePhotoUpload() {
             if(document.getElementById("passPhoto").value !== MY_PASS) return alert("Wrong Password!");
             const file = document.getElementById("fileInput").files[0];
-            if(!file) return alert("Please select a photo first");
+            if(!file) return alert("Select photo");
             
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -96,9 +91,8 @@
                 photos.push(e.target.result);
                 localStorage.setItem("vipPhotos", JSON.stringify(photos));
                 renderGallery();
-                alert("Success! Photo added to Gallery.");
+                alert("Photo Saved!");
                 document.getElementById("passPhoto").value = "";
-                document.getElementById("fileInput").value = "";
             };
             reader.readAsDataURL(file);
         }
@@ -114,20 +108,19 @@
         }
 
         function delPhoto(i) {
-            if(prompt("Enter Admin Password to delete:") === MY_PASS) {
+            if(prompt("Enter Admin Password (7679):") === MY_PASS) {
                 let photos = JSON.parse(localStorage.getItem("vipPhotos"));
                 photos.splice(i, 1);
                 localStorage.setItem("vipPhotos", JSON.stringify(photos));
                 renderGallery();
-            } else { alert("Wrong Password"); }
+            }
         }
 
-        // --- Menu Management ---
         function addDish() {
             if(document.getElementById("passMenu").value !== MY_PASS) return alert("Wrong Password!");
             let cat = document.getElementById("catIn").value.toUpperCase();
             let name = document.getElementById("nameIn").value, price = document.getElementById("priceIn").value;
-            if(!cat || !name || !price) return alert("Saari details bhariye");
+            if(!cat || !name || !price) return;
 
             let data = JSON.parse(localStorage.getItem("vipMenuData") || "{}");
             if(!data[cat]) data[cat] = [];
@@ -135,22 +128,19 @@
             localStorage.setItem("vipMenuData", JSON.stringify(data));
             renderMenu();
             document.getElementById("passMenu").value = "";
-            document.getElementById("catIn").value = "";
-            document.getElementById("nameIn").value = "";
-            document.getElementById("priceIn").value = "";
-            alert("Dish Saved!");
+            alert("Dish Added!");
         }
 
         function renderMenu() {
             let data = JSON.parse(localStorage.getItem("vipMenuData") || "{}");
             let html = "";
             for(let cat in data) {
-                html += `<div style="color:var(--gold); border-bottom:1px solid #333; margin-top:25px; font-family:Cinzel; font-weight:bold; letter-spacing:1px;">${cat}</div>`;
+                html += `<div style="color:var(--gold); border-bottom:1px solid #333; margin-top:25px; font-family:Cinzel;">${cat}</div>`;
                 data[cat].forEach((item, i) => {
                     html += `<div class="item-row">
-                        <div><b style="font-size:15px;">${item.name}</b><br><small style="color:var(--gold); font-weight:bold;">${item.price}</small></div>
+                        <div><b>${item.name}</b><br><small style="color:var(--gold)">${item.price}</small></div>
                         <div style="display:flex; align-items:center;">
-                            <button onclick="window.open('https://wa.me/919158777048?text=Order: ${item.name}')" style="background:var(--gold); border:none; padding:8px 15px; border-radius:6px; font-weight:bold; cursor:pointer;">ORDER</button>
+                            <button onclick="window.open('https://wa.me/919158777048?text=Order: ${item.name}')" style="background:var(--gold); border:none; padding:8px 15px; border-radius:6px; font-weight:bold;">ORDER</button>
                             <button onclick="delDish('${cat}', ${i})" style="background:none; border:none; color:var(--red); margin-left:10px;"><i class="fas fa-trash"></i></button>
                         </div>
                     </div>`;
@@ -160,7 +150,7 @@
         }
 
         function delDish(cat, i) {
-            if(prompt("Enter Password to delete dish:") === MY_PASS) {
+            if(prompt("Enter Password (7679):") === MY_PASS) {
                 let data = JSON.parse(localStorage.getItem("vipMenuData"));
                 data[cat].splice(i, 1);
                 if(data[cat].length === 0) delete data[cat];
