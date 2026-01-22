@@ -3,73 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>The Royal Dining | VIP Fixed</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #0056b3;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        main {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        footer {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
+        :root { --gold: #D4AF37; --dark: #000; --red: #ff4444; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 100px; overflow-x: hidden; }
+        
+        /* VIP Header */
+        .vip-header { padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--gold); background: #050505; }
+        .vip-logo { width: 70px; filter: drop-shadow(0 0 8px var(--gold)); }
+        .vip-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 24px; margin: 10px 0 0 0; letter-spacing: 3px; }
+        
+        /* Gallery */
+        .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; }
+        .img-card { position: relative; height: 160px; border-radius: 12px; overflow: hidden; border: 1px solid #222; }
+        .img-card img { width: 100%; height: 100%; object-fit: cover; }
+        .del-icon { position: absolute; top: 5px; right: 5px; background: var(--red); color: #fff; border: none; border-radius: 50%; width: 25px; height: 25px; display: none; cursor: pointer; }
+
+        /* VIP Menu Button */
+        .main-btn { background: var(--gold); color: #000; padding: 18px; border-radius: 50px; font-weight: bold; border: none; width: 85%; margin: 20px auto; display: block; cursor: pointer; font-size: 16px; text-transform: uppercase; }
+
+        /* DIGITAL MENU OVERLAY (Fixed) */
+        #menu-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; overflow-y: auto; padding: 20px; box-sizing: border-box; }
+        .close-btn { position: absolute; right: 20px; top: 20px; font-size: 40px; color: var(--gold); cursor: pointer; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #1a1a1a; }
+
+        /* Admin Section (Secret) */
+        .secret-trigger { height: 20px; opacity: 0; cursor: pointer; margin-top: 10px; }
+        .admin-box { display: none; background: #0a0a0a; padding: 20px; border: 1px dashed var(--gold); margin: 20px; border-radius: 15px; }
+        .vip-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
+        
+        .footer { position: fixed; bottom: 0; width: 100%; display: flex; background: #000; border-top: 1px solid var(--gold); padding: 10px; box-sizing: border-box; z-index: 500; }
+        .f-btn { flex: 1; text-align: center; padding: 12px; color: #fff; text-decoration: none; border-radius: 50px; margin: 0 5px; font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>My Website</h1>
-        <p>Welcome to our site!</p>
-    </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <main>
-        <section id="home">
-            <h2>Home</h2>
-            <p>This is the main content area. Add your text, images, or other elements here.</p>
-            <img src="placeholder-image.jpg" alt="Sample Image" style="width:100%; max-width:400px;">
-        </section>
-        <!-- Add more sections as needed -->
-    </main>
-    <footer>
-        <p>&copy; 2023 My Website. All rights reserved.</p>
-    </footer>
+
+    <div class="vip-header">
+        <img src="https://img.icons8.com/color/96/crown.png" class="vip-logo">
+        <h1 class="vip-title">THE ROYAL DINING</h1>
+    </div>
+
+    <div class="gallery" id="g-list"></div>
+
+    <button class="main-btn" onclick="openMenu()">Open Digital Menu</button>
+
+    <div class="secret-trigger" onclick="toggleAdmin()">.</div>
+
+    <div class="admin-box" id="adminPanel">
+        <input type="password" id="pin" class="vip-input" placeholder="PIN (7679)">
+        <input type="file" id="imgInp" class="vip-input" accept="image/*" multiple>
+        <button class="main-btn" style="width:100%; margin:5px 0;" onclick="uploadG()">Upload Photos</button>
+        <hr style="border:0.5px solid #222; margin:15px 0;">
+        <input type="text" id="catName" class="vip-input" placeholder="Category">
+        <textarea id="bulkData" class="vip-input" rows="4" placeholder="Dish, Price"></textarea>
+        <button class="main-btn" style="width:100%; margin:5px 0;" onclick="uploadM()">Add Menu Items</button>
+        <button class="main-btn" style="width:100%; margin:5px 0; background:#444; color:#fff;" onclick="toggleDel()">Toggle Delete</button>
+    </div>
+
+    <div id="menu-screen">
+        <div class="close-btn" onclick="closeMenu()">&times;</div>
+        <h2 style="font-family:Cinzel; color:var(--gold); text-align:center; margin-top:50px;">OUR MENU</h2>
+        <div id="menu-items-list"></div>
+    </div>
+
+    <div class="footer">
+        <a href="tel:+919158777048" class="f-btn" style="background:#222;">CALL</a>
+        <a href="https://wa.me/919158777048" class="f-btn" style="background:#25D366;">WHATSAPP</a>
+    </div>
+
+    <script>
+        const PASS = "7679";
+        
+        window.onload = () => { renderG(); renderM(); };
+
+        // Functions for Menu Button (FIXED)
+        function openMenu() { 
+            document.getElementById("menu-screen").style.display = "block";
+            document.body.style.overflow = "hidden"; // Scroll band karein
+        }
+        function closeMenu() { 
+            document.getElementById("menu-screen").style.display = "none";
+            document.body.style.overflow = "auto"; // Scroll shuru karein
+        }
+
+        function toggleAdmin() {
+            let p = document.getElementById("adminPanel");
+            p.style.display = (p.style.display === "block") ? "none" : "block";
+        }
+
+        function uploadG() {
+            if(document.getElementById("pin").value !== PASS) return alert("Wrong PIN");
+            const files = document.getElementById("imgInp").files;
+            let photos = JSON.parse(localStorage.getItem("vip_p") || "[]");
+            Array.from(files).forEach(f => {
+                const r = new FileReader();
+                r.onload = (e) => { photos.push(e.target.result); localStorage.setItem("vip_p", JSON.stringify(photos)); renderG(); };
+                r.readAsDataURL(f);
+            });
+            alert("Photos uploaded!");
+        }
+
+        function renderG() {
+            const photos = JSON.parse(localStorage.getItem("vip_p") || "[]");
+            document.getElementById("g-list").innerHTML = photos.map((s, i) => `
+                <div class="img-card"><img src="${s}"><button class="del-icon" onclick="delP(${i})">&times;</button></div>`).join('');
+        }
+
+        function uploadM() {
+            if(document.getElementById("pin").value !== PASS) return alert("Wrong PIN");
+            let cat = document.getElementById("catName").value.toUpperCase();
+            let text = document.getElementById("bulkData").value;
+            let menu = JSON.parse(localStorage.getItem("vip_m") || "{}");
+            if(!menu[cat]) menu[cat] = [];
+            text.split('\n').forEach(l => {
+                let p = l.split(',');
+                if(p.length >= 2) menu[cat].push({ n: p[0].trim(), pr: p[1].trim() });
+            });
+            localStorage.setItem("vip_m", JSON.stringify(menu));
+            renderM(); alert("Menu updated!");
+        }
+
+        function renderM() {
+            let menu = JSON.parse(localStorage.getItem("vip_m") || "{}");
+            let html = "";
+            for(let c in menu) {
+                html += `<div style="color:var(--gold); border-bottom:1px solid #222; margin-top:25px; font-weight:bold;">${c}</div>`;
+                menu[c].forEach(item => {
+                    html += `<div class="menu-item">
+                        <div><b>${item.n}</b><br><small style="color:var(--gold)">${item.pr}</small></div>
+                        <button style="background:var(--gold); border:none; padding:5px 10px; border-radius:5px; font-weight:bold;" onclick="window.open('https://wa.me/919158777048?text=Order: ${item.n}')">ORDER</button>
+                    </div>`;
+                });
+            }
+            document.getElementById("menu-items-list").innerHTML = html;
+        }
+
+        function toggleDel() {
+            document.querySelectorAll(".del-icon").forEach(i => i.style.display = (i.style.display==="block")?"none":"block");
+        }
+
+        function delP(i) {
+            if(prompt("PIN?") === PASS) {
+                let p = JSON.parse(localStorage.getItem("vip_p"));
+                p.splice(i, 1);
+                localStorage.setItem("vip_p", JSON.stringify(p));
+                renderG();
+            }
+        }
+    </script>
 </body>
 </html>
