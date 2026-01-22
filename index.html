@@ -3,130 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Dining | VIP Mode</title>
+    <title>The Royal Dining | VIP Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --dark: #000; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 90px; }
+        :root { --gold: #D4AF37; --dark: #000; --red: #ff4444; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 100px; }
         
-        /* VIP Header */
-        .header { padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--gold); background: linear-gradient(to bottom, #111, #000); }
-        .crown-logo { width: 60px; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--gold)); }
-        .hotel-name { font-family: 'Cinzel', serif; color: var(--gold); font-size: 26px; margin: 0; letter-spacing: 2px; }
+        /* VIP Logo & Header */
+        .vip-header { padding: 50px 20px; text-align: center; border-bottom: 2px solid var(--gold); background: linear-gradient(180deg, #1a1a1a 0%, #000 100%); }
+        .vip-logo { width: 80px; filter: drop-shadow(0 0 10px var(--gold)); margin-bottom: 10px; }
+        .vip-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 28px; margin: 0; letter-spacing: 4px; text-shadow: 2px 2px 10px rgba(212, 175, 55, 0.3); }
+        
+        /* Public Rating System */
+        .rating-public { text-align: center; margin: 25px 0; background: #0a0a0a; padding: 15px; border-radius: 20px; border: 1px solid #1a1a1a; }
+        .stars { color: var(--gold); font-size: 22px; margin-bottom: 5px; }
+        .rating-text { font-size: 14px; color: #888; letter-spacing: 1px; }
 
-        /* Public Rating */
-        .rating-sec { text-align: center; margin: 15px 0; color: var(--gold); font-size: 18px; }
+        /* VIP Gallery Grid */
+        .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 15px; }
+        .img-card { position: relative; height: 180px; border-radius: 15px; overflow: hidden; border: 1px solid #222; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .img-card img { width: 100%; height: 100%; object-fit: cover; }
+        .del-icon { position: absolute; top: 8px; right: 8px; background: var(--red); color: #fff; border: none; border-radius: 50%; width: 28px; height: 28px; cursor: pointer; display: none; z-index: 10; font-weight: bold; }
 
-        /* Gallery */
-        .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 15px; }
-        .img-box { position: relative; height: 170px; border-radius: 12px; overflow: hidden; border: 1px solid #222; }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
-        .del-x { position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; border-radius: 50%; width: 25px; height: 25px; display: none; }
+        /* Secret Admin Trigger (Chupa hua button) */
+        .secret-dot { height: 15px; width: 100%; opacity: 0; cursor: crosshair; }
+        .admin-panel { display: none; background: #0a0a0a; padding: 25px; border: 1px dashed var(--gold); margin: 20px; border-radius: 20px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); }
+        .vip-input { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; font-size: 14px; }
+        .vip-btn { background: var(--gold); color: #000; padding: 16px; border-radius: 50px; font-weight: 700; border: none; width: 100%; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .vip-btn:active { transform: scale(0.98); }
 
-        /* Secret Admin (Sirf aapke liye) */
-        .admin-trigger { height: 10px; opacity: 0; cursor: pointer; }
-        .admin-panel { display: none; background: #111; padding: 20px; border: 1px dashed var(--gold); margin: 15px; border-radius: 15px; }
-        .input-vip { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
-        .btn-vip { background: var(--gold); color: #000; padding: 15px; border-radius: 50px; font-weight: bold; border: none; width: 100%; cursor: pointer; }
+        /* VIP Menu UI */
+        #menu-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 2000; padding: 25px; box-sizing: border-box; overflow-y: auto; }
+        .close-vip { position: fixed; right: 25px; top: 20px; font-size: 45px; color: var(--gold); cursor: pointer; line-height: 1; }
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid #111; }
+        .order-btn { background: var(--gold); border: none; border-radius: 8px; padding: 8px 15px; font-weight: bold; cursor: pointer; font-size: 12px; }
 
-        /* Menu */
-        #menu-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 1000; padding: 20px; box-sizing: border-box; overflow-y: auto; }
-        .item-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #222; }
-        .footer { position: fixed; bottom: 0; width: 100%; display: flex; background: #000; border-top: 1px solid var(--gold); padding: 10px; box-sizing: border-box; }
-        .btn-f { flex: 1; text-align: center; padding: 12px; color: #fff; text-decoration: none; border-radius: 50px; margin: 0 5px; font-weight: bold; }
+        /* Floating Footer */
+        .vip-footer { position: fixed; bottom: 0; width: 100%; display: flex; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--gold); padding: 12px; box-sizing: border-box; z-index: 500; }
+        .f-item { flex: 1; text-align: center; padding: 14px; color: #fff; text-decoration: none; border-radius: 50px; margin: 0 8px; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="https://img.icons8.com/color/96/crown.png" class="crown-logo">
-        <h1 class="hotel-name">THE ROYAL DINING</h1>
+    <div class="vip-header">
+        <img src="https://img.icons8.com/color/96/crown.png" class="vip-logo">
+        <h1 class="vip-title">THE ROYAL DINING</h1>
+        <p style="color: #666; font-size: 11px; margin-top: 8px; letter-spacing: 2px;">EXPERIENCE VIP TASTE</p>
     </div>
 
-    <div class="rating-sec">
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-        <div style="font-size: 12px; color: #888;">Customer Rating: 4.8/5</div>
+    <div class="rating-public">
+        <div class="stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="rating-text">TRUSTED BY 500+ FOODIES (4.9/5)</div>
     </div>
 
-    <div class="gallery" id="gal-grid"></div>
+    <div class="gallery" id="vip-gallery"></div>
 
-    <button class="btn-vip" style="width:80%; margin:20px auto; display:block;" onclick="openM()">VIEW MENU</button>
+    <button class="vip-btn" style="width:85%; margin: 25px auto; display: block; box-shadow: 0 10px 20px rgba(212,175,55,0.2);" onclick="toggleMenu(true)">EXPLORE FULL MENU</button>
 
-    <div class="admin-trigger" onclick="showA()">.</div>
+    <div class="secret-dot" onclick="toggleAdmin()">.</div>
 
-    <div class="admin-panel" id="aBox">
-        <h3 style="color:var(--gold); margin:0 0 10px 0;">ADMIN PRIVATE SETTINGS</h3>
-        <input type="password" id="pass" class="input-vip" placeholder="Enter Password (7679)">
-        <input type="file" id="photoFiles" class="input-vip" accept="image/*" multiple>
-        <button class="btn-vip" onclick="saveG()">UPLOAD TO GALLERY</button>
-        <hr style="border:0.5px solid #222; margin:15px 0;">
-        <input type="text" id="cat" class="input-vip" placeholder="Category (e.g. BIRYANI)">
-        <textarea id="bulkM" class="input-vip" rows="4" placeholder="Dish, Price (Example:&#10;Chicken Biryani, 250)"></textarea>
-        <button class="btn-vip" onclick="saveM()">ADD BULK MENU</button>
-        <button class="btn-vip" style="background:gray; margin-top:10px;" onclick="toggleD()">SHOW DELETE BUTTONS</button>
+    <div class="admin-panel" id="vipAdmin">
+        <h3 style="color:var(--gold); text-align:center; margin-top:0;">PRIVATE MANAGEMENT</h3>
+        <input type="password" id="adminPass" class="vip-input" placeholder="Enter PIN (7679)">
+        
+        <p style="color:var(--gold); font-size:12px; margin-bottom:5px;">Bulk Photo Upload:</p>
+        <input type="file" id="imageInput" class="vip-input" accept="image/*" multiple>
+        <button class="vip-btn" onclick="uploadImages()">SAVE TO GALLERY</button>
+
+        <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
+        
+        <p style="color:var(--gold); font-size:12px; margin-bottom:5px;">Bulk Menu Upload:</p>
+        <input type="text" id="catName" class="vip-input" placeholder="Category Name (e.g. MUTTON)">
+        <textarea id="bulkData" class="vip-input" rows="5" placeholder="Dish, Price&#10;Example:&#10;Mutton Rogan Josh, 450&#10;Mutton Biryani, 380"></textarea>
+        <button class="vip-btn" onclick="uploadMenu()">UPDATE DIGITAL MENU</button>
+        
+        <button class="vip-btn" style="background:#333; color:#fff; margin-top:10px;" onclick="showDel()">TOGGLE DELETE MODE</button>
     </div>
 
-    <div id="menu-ui">
-        <span onclick="closeM()" style="float:right; font-size:40px; color:var(--gold);">&times;</span>
-        <h2 style="font-family:Cinzel; color:var(--gold); margin-top:50px;">Digital Menu</h2>
-        <div id="m-list"></div>
+    <div id="menu-overlay">
+        <span class="close-vip" onclick="toggleMenu(false)">&times;</span>
+        <h2 style="font-family:Cinzel; color:var(--gold); margin-top:40px; text-align:center;">THE ROYAL MENU</h2>
+        <div id="menu-list"></div>
     </div>
 
-    <div class="footer">
-        <a href="tel:+919158777048" class="btn-f" style="background:#333;">CALL</a>
-        <a href="https://wa.me/919158777048" class="btn-f" style="background:#25D366;">WHATSAPP</a>
+    <div class="vip-footer">
+        <a href="tel:+919158777048" class="f-item" style="background:#222;"><i class="fas fa-phone"></i> CALL</a>
+        <a href="https://wa.me/919158777048" class="f-item" style="background:#25D366;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
     </div>
 
     <script>
-        const PW = "7679";
-        window.onload = () => { drawG(); drawM(); };
+        const PIN = "7679";
+        window.onload = () => { refreshG(); refreshM(); };
 
-        function showA() { let b = document.getElementById("aBox"); b.style.display = (b.style.display == "block") ? "none" : "block"; }
-        function openM() { document.getElementById("menu-ui").style.display = "block"; }
-        function closeM() { document.getElementById("menu-ui").style.display = "none"; }
+        function toggleAdmin() {
+            let p = document.getElementById("vipAdmin");
+            p.style.display = (p.style.display === "block") ? "none" : "block";
+        }
 
-        function saveG() {
-            if(document.getElementById("pass").value !== PW) return alert("Galat Password!");
-            const files = document.getElementById("photoFiles").files;
-            let photos = JSON.parse(localStorage.getItem("vP") || "[]");
-            Array.from(files).forEach(f => {
-                const r = new FileReader();
-                r.onload = (e) => { photos.push(e.target.result); localStorage.setItem("vP", JSON.stringify(photos)); drawG(); };
-                r.readAsDataURL(f);
+        function toggleMenu(show) {
+            document.getElementById("menu-overlay").style.display = show ? "block" : "none";
+        }
+
+        // Photo Management
+        function uploadImages() {
+            if(document.getElementById("adminPass").value !== PIN) return alert("Unauthorized Access!");
+            const files = document.getElementById("imageInput").files;
+            let photos = JSON.parse(localStorage.getItem("vip_photos") || "[]");
+            
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photos.push(e.target.result);
+                    localStorage.setItem("vip_photos", JSON.stringify(photos));
+                    refreshG();
+                };
+                reader.readAsDataURL(file);
             });
-            alert("Photos added!");
+            alert("VIP Gallery Updated!");
         }
 
-        function drawG() {
-            const p = JSON.parse(localStorage.getItem("vP") || "[]");
-            document.getElementById("gal-grid").innerHTML = p.map((s, i) => `
-                <div class="img-box"><img src="${s}"><button class="del-x" onclick="delP(${i})">&times;</button></div>`).join('');
+        function refreshG() {
+            const photos = JSON.parse(localStorage.getItem("vip_photos") || "[]");
+            document.getElementById("vip-gallery").innerHTML = photos.map((src, i) => `
+                <div class="img-card">
+                    <img src="${src}">
+                    <button class="del-icon" onclick="deleteP(${i})">&times;</button>
+                </div>`).join('');
         }
 
-        function saveM() {
-            if(document.getElementById("pass").value !== PW) return alert("Galat Password!");
-            let c = document.getElementById("cat").value.toUpperCase();
-            let t = document.getElementById("bulkM").value;
-            let d = JSON.parse(localStorage.getItem("vM") || "{}");
-            if(!d[c]) d[c] = [];
-            t.split('\n').forEach(l => { let p = l.split(','); if(p.length>=2) d[c].push({n:p[0].trim(), pr:p[1].trim()}); });
-            localStorage.setItem("vM", JSON.stringify(d));
-            drawM(); alert("Menu Updated!");
+        function showDel() {
+            let icons = document.querySelectorAll(".del-icon");
+            icons.forEach(i => i.style.display = (i.style.display === "block") ? "none" : "block");
         }
 
-        function drawM() {
-            let d = JSON.parse(localStorage.getItem("vM") || "{}");
-            let h = "";
-            for(let c in d) {
-                h += `<h3 style="color:var(--gold); border-bottom:1px solid #222; margin-top:20px;">${c}</h3>`;
-                d[c].forEach(i => { h += `<div class="item-row"><div><b>${i.n}</b><br><small>${i.pr}</small></div><button style="background:var(--gold); border:none; border-radius:5px; padding:5px 10px;" onclick="window.open('https://wa.me/919158777048?text=Order: ${i.n}')">ORDER</button></div>`; });
+        function deleteP(i) {
+            if(prompt("Enter Admin PIN to confirm delete:") === PIN) {
+                let photos = JSON.parse(localStorage.getItem("vip_photos"));
+                photos.splice(i, 1);
+                localStorage.setItem("vip_photos", JSON.stringify(photos));
+                refreshG();
             }
-            document.getElementById("m-list").innerHTML = h;
         }
 
-        function toggleD() { document.querySelectorAll(".del-x").forEach(b => b.style.display = (b.style.display=="block")?"none":"block"); }
-        function delP(i) { if(prompt("Password?")==PW) { let p = JSON.parse(localStorage.getItem("vP")); p.splice(i,1); localStorage.setItem("vP", JSON.stringify(p)); drawG(); } }
+        // Menu Management (Bulk)
+        function uploadMenu() {
+            if(document.getElementById("adminPass").value !== PIN) return alert("Wrong PIN!");
+            let cat = document.getElementById("catName").value.toUpperCase();
+            let text = document.getElementById("bulkData").value;
+            if(!cat || !text) return alert("Please fill all fields");
+
+            let menu = JSON.parse(localStorage.getItem("vip_menu") || "{}");
+            if(!menu[cat]) menu[cat] = [];
+
+            text.split('\n').forEach(line => {
+                let parts = line.split(',');
+                if(parts.length >= 2) {
+                    menu[cat].push({ name: parts[0].trim(), price: parts[1].trim() });
+                }
+            });
+
+            localStorage.setItem("vip_menu", JSON.stringify(menu));
+            refreshM();
+            alert("Bulk Menu Added!");
+            document.getElementById("bulkData").value = "";
+        }
+
+        function refreshM() {
+            let menu = JSON.parse(localStorage.getItem("vip_menu") || "{}");
+            let html = "";
+            for(let cat in menu) {
+                html += `<div style="color:var(--gold); border-bottom:1px solid #222; margin:30px 0 10px 0; font-family:Cinzel; font-weight:bold;">${cat}</div>`;
+                menu[cat].forEach(item => {
+                    html += `<div class="item-row">
+                        <div><b>${item.name}</b><br><span style="color:var(--gold); font-size:13px;">${item.price}</span></div>
+                        <button class="order-btn" onclick="window.open('https://wa.me/919158777048?text=I want to order: ${item.name}')">ORDER</button>
+                    </div>`;
+                });
+            }
+            document.getElementById("menu-list").innerHTML = html;
+        }
     </script>
 </body>
 </html>
