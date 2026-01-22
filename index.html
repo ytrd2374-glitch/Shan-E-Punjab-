@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,30 +16,22 @@ header{padding:20px;text-align:center;background:#000;border-bottom:2px solid va
 </style>
 </head>
 <body>
-<header><h1 style="font-family:Cinzel;color:var(--gold);margin:0;">VIP RESTAURANT</h1></header>
-
-<div class="admin-box">
+<header><h1 style="font-family:Cinzel;color:var(--gold);margin:0;">VIP RESTAURANT</h1></header><div class="admin-box">
 <h3 style="color:var(--gold);margin-top:0;">PHOTO UPLOAD (ADMIN ONLY)</h3>
 <input type="file" id="f1" class="admin-input" accept="image/*" multiple>
 <button class="btn-gold" onclick="secureAction(upPhoto)">UPLOAD PHOTOS</button>
-</div>
-
-<button class="btn-gold" style="width:90%;margin:10px auto;display:block;" onclick="openMenu()">OPEN DIGITAL MENU</button>
+</div><button class="btn-gold" style="width:90%;margin:10px auto;display:block;" onclick="openMenu()">OPEN DIGITAL MENU</button>
 
 <div id="menu-page">
 <span onclick="closeMenu()" style="position:fixed;right:20px;top:10px;font-size:35px;color:var(--gold);cursor:pointer">&times;</span>
-<div id="menu-content" style="margin-top:40px"></div>
-
-<div class="admin-box">
+<div id="menu-content" style="margin-top:40px"></div><div class="admin-box">
 <h3 style="color:var(--gold);">BULK ADD MENU</h3>
 <input type="text" id="cat" class="admin-input" placeholder="Category (e.g. BIRYANI)">
 <textarea id="bulkData" rows="6" placeholder="Dish Name, Price (one per line)"></textarea>
 <button class="btn-gold" onclick="secureAction(bulkAdd)">ADD ITEMS</button>
 <button class="btn-gold" style="background:#ff4444;margin-top:10px" onclick="secureAction(clearMenu)">CLEAR MENU</button>
 </div>
-</div>
-
-<script>
+</div><script>
 const PASS_HASH = "7679"; // simple lock (client-side)
 let isAdmin = sessionStorage.getItem("vipAdmin") === "yes";
 
@@ -89,6 +80,5 @@ function loadM(){
  for(let c in d){h+=`<div style="color:var(--gold);margin-top:20px;font-weight:bold">${c}</div>`;d[c].forEach(i=>{h+=`<div class="item-row"><b>${i.n}</b><span>${i.pr}</span></div>`})}
  document.getElementById("menu-content").innerHTML=h||"<p>No menu added</p>";
 }
-</script>
-</body>
+</script></body>
 </html>
