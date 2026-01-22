@@ -3,121 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel & Family Restaurant | VIP Portal</title>
+    <title>Hotel & Family Restaurant | VIP</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #D4AF37; --dark: #050505; --card: #111; }
-        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; transition: 0.5s; }
+        body { font-family: 'Poppins', sans-serif; background: var(--dark); color: #fff; margin: 0; padding-bottom: 100px; }
         
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
-                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1500');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        /* Badi Photo Section */
+        .hero-image-container {
+            width: 100%; height: 60vh; position: relative;
+            border-bottom: 4px solid var(--gold); overflow: hidden;
         }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); margin-bottom: 20px; letter-spacing: 5px; }
-
-        /* VIP Buttons */
-        .btn-gold {
-            background: linear-gradient(45deg, #D4AF37, #B8860B); color: #000; 
-            padding: 20px 50px; border-radius: 50px; font-weight: 900; border: none;
-            cursor: pointer; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4); text-transform: uppercase;
+        #mainHeroPhoto {
+            width: 100%; height: 100%; object-fit: cover; transition: 0.5s;
         }
-
-        /* Full Screen Menu Overlay */
-        #menu-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--dark); z-index: 1000; overflow-y: auto; padding: 20px;
+        .hero-overlay {
+            position: absolute; bottom: 0; width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px; text-align: center;
         }
-        .close-menu { position: fixed; top: 20px; right: 20px; font-size: 30px; color: var(--gold); cursor: pointer; }
+        .hero-overlay h1 { font-family: 'Cinzel', serif; color: var(--gold); margin: 0; font-size: 1.8rem; }
 
-        .search-bar { width: 100%; max-width: 500px; padding: 15px; border-radius: 30px; border: 1px solid var(--gold); background: #111; color: #fff; margin: 30px auto; display: block; }
+        /* Menu Section */
+        .container { max-width: 500px; margin: auto; padding: 20px; }
+        .menu-header { 
+            text-align: center; margin: 20px 0; font-family: 'Cinzel'; 
+            color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 10px;
+        }
+        
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #222; }
+        .item-name { font-size: 15px; color: #eee; }
+        .item-price { color: var(--gold); font-weight: bold; }
+        
+        .order-btn { background: var(--gold); color: #000; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; }
 
-        .category-title { font-family: 'Cinzel', serif; color: var(--gold); text-align: center; margin-top: 40px; border-bottom: 1px solid #333; }
-        .menu-list { max-width: 600px; margin: auto; }
-        .menu-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #222; }
+        /* Admin Controls */
+        .admin-controls { 
+            background: #111; padding: 20px; border-radius: 15px; border: 1px dashed #444; margin-top: 30px; 
+        }
+        .admin-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #000; color: #fff; box-sizing: border-box; }
+        .btn-action { width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 10px; }
+        .btn-gold { background: var(--gold); color: #000; }
+        .btn-blue { background: #1a73e8; color: #fff; }
 
-        /* Admin Add Section */
-        .admin-box { background: #111; padding: 20px; border-radius: 15px; border: 1px dashed var(--gold); margin: 50px auto; max-width: 500px; }
-        .admin-box input { width: 45%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none; }
-        .btn-add { background: var(--gold); color: #000; border: none; padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; }
-
-        .contact-fixed { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 2000; }
-        .c-btn { padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        /* Footer Buttons */
+        .footer-nav { position: fixed; bottom: 0; width: 100%; display: flex; gap: 10px; padding: 15px; background: rgba(0,0,0,0.95); border-top: 1px solid var(--gold); z-index: 100; box-sizing: border-box; }
+        .f-btn { flex: 1; text-align: center; padding: 12px; border-radius: 50px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div class="hero" id="home-screen">
-        <h1>Hotel & Family Restaurant</h1>
-        <p style="color: #888; letter-spacing: 3px; margin-bottom: 40px;">THE ART OF LUXURY DINING</p>
-        <button class="btn-gold" onclick="openMenu()">Click to View VIP Menu</button>
-    </div>
-
-    <div id="menu-overlay">
-        <span class="close-menu" onclick="closeMenu()">&times;</span>
-        <h2 style="text-align:center; color: var(--gold); font-family: 'Cinzel';">The Royal Menu</h2>
-        
-        <input type="text" class="search-bar" placeholder="Search dish name..." id="menuSearch" onkeyup="searchMenu()">
-
-        <div class="menu-list" id="full-menu-list">
-            <h3 class="category-title">Chinese Veg</h3>
-            <div class="menu-item"><span>Crispy Veg</span><span style="color:var(--gold)">190/-</span></div>
-            <div class="menu-item"><span>Veg Bullet</span><span style="color:var(--gold)">260/-</span></div>
-            <div class="menu-item"><span>Veg Manchurian</span><span style="color:var(--gold)">170/-</span></div>
-            <div class="menu-item"><span>Chilly Paneer</span><span style="color:var(--gold)">210/-</span></div>
-            <div class="menu-item"><span>Paneer 65</span><span style="color:var(--gold)">220/-</span></div>
-
-            <h3 class="category-title">Chinese Non-Veg</h3>
-            <div class="menu-item"><span>Chilly Chicken</span><span style="color:var(--gold)">220/-</span></div>
-            <div class="menu-item"><span>Chicken 65</span><span style="color:var(--gold)">230/-</span></div>
-            <div class="menu-item"><span>Chicken Lollypop (6 pc)</span><span style="color:var(--gold)">260/-</span></div>
-        </div>
-
-        <div class="admin-box">
-            <h4 style="margin-top:0; color:var(--gold)">Add New Item to Menu</h4>
-            <input type="text" id="itemName" placeholder="Item Name">
-            <input type="text" id="itemPrice" placeholder="Price (e.g. 200/-)">
-            <button class="btn-add" onclick="addNewItem()">Add Item Now</button>
+    <div class="hero-image-container">
+        <img id="mainHeroPhoto" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=1000" alt="Special Dish">
+        <div class="hero-overlay">
+            <h1>Hotel & Family Restaurant</h1>
+            <p style="font-size: 12px; letter-spacing: 2px;">THE ROYAL DINING EXPERIENCE</p>
         </div>
     </div>
 
-    <div class="contact-fixed">
-        <a href="tel:+919158777048" class="c-btn" style="background:#fff; color:#000;"><i class="fas fa-phone"></i> CALL</a>
-        <a href="https://wa.me/919158777048" class="c-btn" style="background:#25D366; color:#fff;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+    <div class="container">
+        <h2 class="menu-header">Our Menu</h2>
+        <div id="menu-list">
+            </div>
+
+        <div class="admin-controls">
+            <p style="color:var(--gold); font-size: 12px; text-align: center;">ADMIN PANEL (PERMANENT SETTINGS)</p>
+            
+            <input type="text" id="photoUrl" class="admin-input" placeholder="Photo Link daalein (URL)">
+            <button class="btn-action btn-blue" onclick="changePhoto()">Update Header Photo</button>
+            <hr style="border: 0.5px solid #222; margin: 20px 0;">
+            
+            <input type="text" id="itemName" class="admin-input" placeholder="Item Name">
+            <input type="text" id="itemPrice" class="admin-input" placeholder="Price (e.g. 250/-)">
+            <button class="btn-action btn-gold" onclick="saveItem()">Add to Menu</button>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="tel:+919158777048" class="f-btn" style="background:#fff; color:#000;"><i class="fas fa-phone"></i> CALL</a>
+        <a href="https://wa.me/919158777048" class="f-btn" style="background:#25D366; color:#fff;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
     </div>
 
     <script>
-        function openMenu() { document.getElementById("menu-overlay").style.display = "block"; }
-        function closeMenu() { document.getElementById("menu-overlay").style.display = "none"; }
+        // Website load hone par settings check karein
+        window.onload = function() {
+            const savedPhoto = localStorage.getItem("headerPhoto");
+            if(savedPhoto) document.getElementById("mainHeroPhoto").src = savedPhoto;
+            
+            if (!localStorage.getItem("myMenu")) {
+                localStorage.setItem("myMenu", JSON.stringify([{name: "Crispy Veg", price: "190/-"}]));
+            }
+            displayMenu();
+        };
 
-        // Search Function
-        function searchMenu() {
-            let input = document.getElementById('menuSearch').value.toLowerCase();
-            let items = document.getElementsByClassName('menu-item');
-            for (i = 0; i < items.length; i++) {
-                items[i].style.display = items[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
+        // Photo badalne ka function
+        function changePhoto() {
+            const url = document.getElementById("photoUrl").value;
+            if(url) {
+                localStorage.setItem("headerPhoto", url);
+                document.getElementById("mainHeroPhoto").src = url;
+                alert("Photo badal di gayi hai!");
             }
         }
 
-        // Add New Item Function
-        function addNewItem() {
+        // Menu save karne ka function
+        function saveItem() {
             let name = document.getElementById("itemName").value;
             let price = document.getElementById("itemPrice").value;
             if(name && price) {
-                let div = document.createElement("div");
-                div.className = "menu-item";
-                div.innerHTML = `<span>${name}</span><span style="color:var(--gold)">${price}</span>`;
-                document.getElementById("full-menu-list").appendChild(div);
+                let items = JSON.parse(localStorage.getItem("myMenu"));
+                items.push({name: name, price: price});
+                localStorage.setItem("myMenu", JSON.stringify(items));
+                displayMenu();
                 document.getElementById("itemName").value = "";
                 document.getElementById("itemPrice").value = "";
-                alert("Naya item menu mein jud gaya hai!");
-            } else {
-                alert("Please dono box bhariye.");
             }
+        }
+
+        function displayMenu() {
+            let items = JSON.parse(localStorage.getItem("myMenu"));
+            let container = document.getElementById("menu-list");
+            container.innerHTML = "";
+            items.forEach((item, index) => {
+                container.innerHTML += `
+                    <div class="item-row">
+                        <div><span class="item-name">${item.name}</span><br><span class="item-price">${item.price}</span></div>
+                        <button class="order-btn" onclick="orderNow('${item.name}')">ORDER</button>
+                    </div>`;
+            });
+        }
+
+        function orderNow(name) {
+            window.open(`https://wa.me/919158777048?text=I want to order: ${name}`, '_blank');
         }
     </script>
 </body>
